@@ -1,0 +1,42 @@
+
+name: Download NFL participation data 2016-2025
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download nflverse participation Parquet files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p participation
+
+          for year in {2016..2025}; do
+            url="https://github.com/nflverse/nflverse-data/releases/download/pbp_participation/pbp_participation_${year}.parquet"
+
+            echo "Downloading ${year}..."
+
+            curl -fL --retry 3 \
+              "$url" \
+              -o "participation/pbp_participation_${year}.parquet"
+
+            test -s "participation/pbp_participation_${year}.parquet"
+          done
+
+          cd participation
+          sha256sum *.parquet > SHA256SUMS.txt
+
+      - name: Upload participation archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: nflverse-pbp-participation-2016-2025
+          path: participation/
+          if-no-files-found: error
+          retention-days: 7
