@@ -1,0 +1,70 @@
+name: Download NFL schedules and starting QBs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/download-schedules.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download official nflverse schedule
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p data
+
+          curl --fail --location --retry 3 \
+            -o data/games.csv \
+            https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv
+
+          python - <<'PY'
+          import csv
+
+          source = "data/games.csv"
+          output = "data/games_2002_2025.csv"
+
+          with open(source, newline="", encoding="utf-8-sig") as f:
+              reader = csv.DictReader(f)
+              required = {
+                  "game_id", "season", "week", "game_type",
+                  "gameday", "home_team", "away_team",
+                  "home_qb_id", "away_qb_id",
+                  "home_qb_name", "away_qb_name"
+              }
+              missing = required - set(reader.fieldnames or [])
+              if missing:
+                  raise SystemExit(f"Missing required columns: {sorted(missing)}")
+
+              rows = [
+                  row for row in reader
+                  if row["season"].isdigit()
+                  and 2002 <= int(row["season"]) <= 2025
+              ]
+
+          with open(output, "w", newline="", encoding="utf-8") as f:
+              writer = csv.DictWriter(f, fieldnames=reader.fieldnames)
+              writer.writeheader()
+              writer.writerows(rows)
+
+          print(f"Exported {len(rows)} games")
+          PY
+
+          sha256sum data/games.csv data/games_2002_2025.csv \
+            > data/SHA256SUMS.txt
+
+      - name: Upload schedule data
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-schedules-starting-qbs-2002-2025
+          path: |
+            data/games.csv
+            data/games_2002_2025.csv
+            data/SHA256SUMS.txt
+          retention-days: 7
