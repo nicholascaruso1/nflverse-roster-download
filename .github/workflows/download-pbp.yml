@@ -1,0 +1,76 @@
+name: Download nflverse play-by-play scoring data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "47 10 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Install validation dependencies
+        run: python -m pip install --upgrade pandas pyarrow
+
+      - name: Download official play-by-play Parquet files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p pbp
+          : > pbp/SHA256SUMS.txt
+
+          for year in $(seq 1999 2026); do
+            file="play_by_play_${year}.parquet"
+            url="https://github.com/nflverse/nflverse-data/releases/download/pbp/${file}"
+
+            echo "Downloading ${file}"
+            curl --fail --location --retry 3 --retry-all-errors \
+              --output "pbp/${file}" "${url}"
+
+            test -s "pbp/${file}"
+            sha256sum "pbp/${file}" >> pbp/SHA256SUMS.txt
+          done
+
+          python - <<'PY'
+          import pandas as pd
+          from pathlib import Path
+
+          required = {
+              "game_id", "season", "week", "game_type", "posteam",
+              "defteam", "play_id", "play_type", "desc", "yards_gained",
+              "touchdown", "td_team", "td_player_id", "td_player_name",
+              "score_differential", "total_home_score", "total_away_score",
+              "field_goal_result", "extra_point_result",
+              "two_point_conv_result", "safety", "game_date"
+          }
+
+          manifest = []
+          for path in sorted(Path("pbp").glob("play_by_play_*.parquet")):
+              df = pd.read_parquet(path)
+              missing = required - set(df.columns)
+              if missing:
+                  raise SystemExit(
+                      f"{path.name} missing required columns: {sorted(missing)}"
+                  )
+              manifest.append({
+                  "season": path.stem.rsplit("_", 1)[-1],
+                  "rows": len(df),
+                  "columns": len(df.columns),
+                  "file": path.name
+              })
+              print(f"{path.name}: {len(df):,} plays; schema validated")
+
+          pd.DataFrame(manifest).to_csv("pbp/manifest.csv", index=False)
+          PY
+
+      - name: Upload play-by-play archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: nflverse-play-by-play-1999-2026
+          path: pbp/
+          if-no-files-found: error
+          retention-days: 90
