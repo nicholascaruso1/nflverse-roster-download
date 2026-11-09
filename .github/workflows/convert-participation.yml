@@ -1,0 +1,56 @@
+name: Convert NFL participation data to CSV
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install dependencies
+        run: pip install pandas pyarrow
+
+      - name: Download and convert participation data
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+
+          python - <<'PY'
+          import pandas as pd
+          from pathlib import Path
+
+          frames = []
+
+          for year in range(2016, 2026):
+              url = (
+                  "https://github.com/nflverse/nflverse-data/releases/"
+                  f"download/pbp_participation/pbp_participation_{year}.parquet"
+              )
+              df = pd.read_parquet(url)
+              df["source_year"] = year
+              frames.append(df)
+              print(f"{year}: {len(df):,} rows; {len(df.columns)} columns")
+
+          combined = pd.concat(frames, ignore_index=True)
+          combined.to_csv("output/participation_2016_2025.csv", index=False)
+
+          with open("output/schema_and_summary.txt", "w") as f:
+              f.write(f"Rows: {len(combined):,}\n")
+              f.write(f"Columns: {len(combined.columns)}\n\n")
+              f.write(str(combined.dtypes))
+              f.write("\n\n")
+              f.write(str(combined.head(10).to_string()))
+          PY
+
+      - name: Upload converted data
+        uses: actions/upload-artifact@v4
+        with:
+          name: nflverse-participation-csv-2016-2025
+          path: output/
+          if-no-files-found: error
+          retention-days: 7
