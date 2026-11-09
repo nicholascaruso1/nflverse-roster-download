@@ -1,0 +1,53 @@
+name: Build NFL scoring event and TD attribution ledger
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Download nflverse play-by-play scoring data", "Download nflverse weekly rosters"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  build-ledger:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install analysis dependencies
+        run: python -m pip install --upgrade pandas pyarrow
+
+      - name: Download official play-by-play and weekly roster data
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p pbp rosters
+          for year in $(seq 1999 2026); do
+            file="play_by_play_${year}.parquet"
+            curl --fail --location --retry 3 --retry-all-errors \
+              --output "pbp/${file}" \
+              "https://github.com/nflverse/nflverse-data/releases/download/pbp/${file}"
+            test -s "pbp/${file}"
+          done
+          for year in $(seq 2002 2026); do
+            file="roster_weekly_${year}.csv"
+            curl --fail --location --retry 3 --retry-all-errors \
+              --output "rosters/${file}" \
+              "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/${file}"
+            test -s "rosters/${file}"
+          done
+
+      - name: Build scoring-event ledger and jersey attribution
+        run: python scripts/build_scoring_event_ledger.py
+
+      - name: Upload derived ledgers
+        uses: actions/upload-artifact@v4
+        with:
+          name: nfl-scoring-event-and-td-attribution-ledger
+          path: output/
+          if-no-files-found: error
+          retention-days: 90
