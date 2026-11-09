@@ -6,6 +6,8 @@ on:
     paths:
       - ".github/workflows/download-rosters.yml"
   workflow_dispatch:
+  schedule:
+    - cron: "17 10 * * 1"
 
 permissions:
   contents: read
@@ -13,7 +15,7 @@ permissions:
 jobs:
   download:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Download official weekly roster CSVs
         shell: bash
@@ -22,12 +24,12 @@ jobs:
           mkdir -p data
           : > data/SHA256SUMS.txt
 
-          for year in $(seq 2002 2025); do
+          for year in $(seq 2002 2026); do
             file="roster_weekly_${year}.csv"
             url="https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/${file}"
 
             echo "Downloading ${file}"
-            curl --fail --location --retry 3 \
+            curl --fail --location --retry 3 --retry-all-errors \
               --output "data/${file}" "${url}"
 
             test -s "data/${file}"
@@ -36,22 +38,21 @@ jobs:
           done
 
           printf "season,filename,bytes\n" > data/manifest.csv
-
-          for year in $(seq 2002 2025); do
+          for year in $(seq 2002 2026); do
             file="roster_weekly_${year}.csv"
             bytes=$(stat -c%s "data/${file}")
             printf "%s,%s,%s\n" "$year" "$file" "$bytes" >> data/manifest.csv
           done
 
-          tar -czf nflverse_weekly_rosters_2002_2025.tar.gz -C data .
+          tar -czf nflverse_weekly_rosters_2002_2026.tar.gz -C data .
 
       - name: Upload roster archive
         uses: actions/upload-artifact@v4
         with:
-          name: nflverse-weekly-rosters-2002-2025
+          name: nflverse-weekly-rosters-2002-2026
           path: |
-            nflverse_weekly_rosters_2002_2025.tar.gz
+            nflverse_weekly_rosters_2002_2026.tar.gz
             data/manifest.csv
             data/SHA256SUMS.txt
           if-no-files-found: error
-          retention-days: 7
+          retention-days: 90
