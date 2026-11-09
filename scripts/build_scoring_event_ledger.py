@@ -63,6 +63,7 @@ cols = ["game_id", "season", "week", "game_date", "play_id", "event_type",
         "scoring_team", "posteam", "defteam", "td_player_id", "td_player_name",
         "desc", "source_season_file"]
 events = pd.concat([x.reindex(columns=cols) for x in [td, fg, safety, xp, two]], ignore_index=True)
+events = events.reset_index(drop=True)
 events["play_id"] = pd.to_numeric(events["play_id"], errors="coerce")
 events = events.sort_values(["game_id", "play_id", "event_type"], kind="stable")
 events["is_first_td"] = False
@@ -85,16 +86,24 @@ td_join = events.loc[td_events].copy()
 td_join["gsis_id"] = td_join["td_player_id"].astype("string").str.strip()
 roster_key = rosters[["season", "week", "team", "gsis_id", "jersey_number",
                       "position", "full_name", "status"]].dropna(subset=["gsis_id"]).copy()
-roster_key = roster_key.drop_duplicates(["season", "week", "team", "gsis_id"], keep="last")
+
+# Historical nflverse team-code aliases. Normalize both sources to current-style codes.
+team_aliases = {
+    "ARZ": "ARI", "BLT": "BAL", "CLV": "CLE", "HST": "HOU",
+    "JAC": "JAX", "SD": "LAC", "OAK": "LV", "SL": "LA"
+}
+roster_key["team_norm"] = roster_key["team"].astype("string").replace(team_aliases)
+roster_key = roster_key.drop_duplicates(["season", "week", "team_norm", "gsis_id"], keep="last")
+td_join["scoring_team_norm"] = td_join["scoring_team"].astype("string").replace(team_aliases)
 joined = td_join.merge(roster_key, on=["season", "week", "gsis_id"], how="left", suffixes=("", "_roster"))
-joined["team_match"] = joined["scoring_team"].astype("string").eq(joined["team"].astype("string"))
+joined["team_match"] = joined["scoring_team_norm"].eq(joined["team_norm"])
 joined["jersey_join_status"] = "MATCHED"
 joined.loc[joined["td_player_id"].isna() | joined["td_player_id"].astype("string").str.strip().eq(""), "jersey_join_status"] = "NO_PLAYER_ID"
 joined.loc[joined["td_player_id"].notna() & joined["team"].isna(), "jersey_join_status"] = "UNMATCHED_ROSTER"
 joined.loc[joined["team"].notna() & ~joined["team_match"], "jersey_join_status"] = "TEAM_MISMATCH"
 
 # When multiple roster entries exist, prefer exact team match, then available jersey number.
-joined = joined.sort_values(["game_id", "play_id", "team_match"], ascending=[True, True, False])
+joined = joined.sort_values(["game_id", "play_id", "team_match"], ascending=[True, True, False], kind="stable")
 joined = joined.drop_duplicates(["game_id", "play_id"], keep="first")
 
 events.to_csv(OUT / "scoring_event_ledger.csv", index=False)
