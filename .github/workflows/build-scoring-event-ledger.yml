@@ -1,17 +1,20 @@
 name: Build NFL scoring event and TD attribution ledger
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-scoring-event-ledger.yml"
+      - "scripts/build_scoring_event_ledger.py"
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Download nflverse play-by-play scoring data", "Download nflverse weekly rosters"]
-    types: [completed]
+  schedule:
+    - cron: "17 11 * * 1"
 
 permissions:
   contents: read
 
 jobs:
   build-ledger:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
