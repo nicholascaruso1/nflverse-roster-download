@@ -512,8 +512,8 @@ Python 3 with pandas, pyarrow and tabulate; the script is deterministic.
 | R3 | Team red-zone comparison broader than the player count | Fixed: described as a raw `rush==1` flag count with no play_type or rusher-id restriction (46 / 21 includes 1 null-rusher row). Cook's 28 / 10 is unaffected. |
 | R4 | Script never read `games.csv` | Fixed: section 8 now loads it and prints the BUF@MIN row (spread -3.5, total 45.5, ML -192 / +160, dome). The Hard Rock lines are from Nick's screenshots and are not reproducible by script. |
 | R5 | Artifact byte identity unverified | **Open, unchanged.** Needs a hash comparison against `SHA256SUMS.txt` inside the GitHub Actions artifacts, which the Claude session could not access. |
-| R6 | Numerical outputs not independently verified by the reviewer | Open on the reviewer's side. Re-running v2 on the hashed inputs reproduces all prior tables; the only diffs against v1 output are the two wording changes (R2, R3) and the new section 8. |
-| R7 | Lock 2 addendum not yet reviewed | Pending: delivered separately as `week9-nfl-mnf-buf-min-lock2-addendum.md`. |
+| R6 | Numerical outputs not independently verified by the reviewer | **Open.** Reviewer's runtime lacked pyarrow (see R8); the reviewer has verified the raw-input and script hashes. Re-running v2 on the hashed inputs reproduces all prior tables; the only diffs against v1 output are the two wording changes (R2, R3) and the new section 8. |
+| R7 | Lock 2 addendum not yet reviewed | **Closed.** Reviewer received and reviewed the addendum (`week9-nfl-mnf-buf-min-lock2-addendum.md`) and confirmed the official Lock 2 record is Wentz Under 215.5 (-115) LEAN, with the original pregame WATCH preserved. The D2 annotation (Murray 200.8, Wentz relief game) is carried in the ledger record. |
 
 | R8 | Reviewer environment lacked pyarrow, so R6 could not run | Script v2.1 also reads `play_by_play_2026.csv`, a lossless `to_csv` export of the parquet (SHA-256 dfcaa3c8e1963726d1a0c3be240c990d3d098d121fcd1ccfd87af5a8922c911f). Output on CSV vs parquet is identical except the dtype notation in the schema line (e.g. `week:int64` vs `int32`). |
 
