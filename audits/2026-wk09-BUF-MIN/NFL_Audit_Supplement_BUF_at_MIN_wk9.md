@@ -20,6 +20,8 @@ lock2_wentz_under_audit_annotation: "Lock 2 LEAN (215.5 at -115) stands as recor
 audit_py_sha256: 7e181aa6f8d449bd09c532ebf120ba96cea47374b5b16ee6db0941506935102f
 retrieved: 2026-11-09T19:30:41-05:00
 github_actions_artifacts: INACCESSIBLE in the Claude session (see section 5)
+independent_reproduction: {R6: closed, reviewer_run_of_v2.1_matches_author_run_except_dtype_label_line}
+open_items: [R5 artifact SHA256SUMS comparison]
 reconciliation_result: efficiency PASS (14/14 figures); Cook red zone PASS (28/10); turnovers PASS (counts); QB-hit PASS (rates); player hit counts PASS; 6 labeling/evidence findings (D1-D6)
 ```
 
@@ -512,7 +514,7 @@ Python 3 with pandas, pyarrow and tabulate; the script is deterministic.
 | R3 | Team red-zone comparison broader than the player count | Fixed: described as a raw `rush==1` flag count with no play_type or rusher-id restriction (46 / 21 includes 1 null-rusher row). Cook's 28 / 10 is unaffected. |
 | R4 | Script never read `games.csv` | Fixed: section 8 now loads it and prints the BUF@MIN row (spread -3.5, total 45.5, ML -192 / +160, dome). The Hard Rock lines are from Nick's screenshots and are not reproducible by script. |
 | R5 | Artifact byte identity unverified | **Open, unchanged.** Needs a hash comparison against `SHA256SUMS.txt` inside the GitHub Actions artifacts, which the Claude session could not access. |
-| R6 | Numerical outputs not independently verified by the reviewer | **Open.** Reviewer's runtime lacked pyarrow (see R8); the reviewer has verified the raw-input and script hashes. Re-running v2 on the hashed inputs reproduces all prior tables; the only diffs against v1 output are the two wording changes (R2, R3) and the new section 8. |
+| R6 | Numerical outputs not independently verified by the reviewer | **Closed 2026-11-09 ~8:40 PM ET.** Reviewer ran audit.py v2.1 (SHA-256 7e181aa6...5102f) on the hash-verified CSV export, roster and games files (exit 0). Reviewer output (53,449 bytes, SHA-256 aa1f9d023112e4a71e9b15808e036a147f093e2eff68d9b059ecd0da0f0b379d) was diffed line by line against the author run on the same inputs (o_csv.md, 53,023 bytes, SHA-256 daa2bdc5...ba40): one differing line, the schema dtype list (`object` vs `str`, a pandas-version label). Every table and count is identical. |
 | R7 | Lock 2 addendum not yet reviewed | **Closed.** Reviewer received and reviewed the addendum (`week9-nfl-mnf-buf-min-lock2-addendum.md`) and confirmed the official Lock 2 record is Wentz Under 215.5 (-115) LEAN, with the original pregame WATCH preserved. The D2 annotation (Murray 200.8, Wentz relief game) is carried in the ledger record. |
 
 | R8 | Reviewer environment lacked pyarrow, so R6 could not run | Script v2.1 also reads `play_by_play_2026.csv`, a lossless `to_csv` export of the parquet (SHA-256 dfcaa3c8e1963726d1a0c3be240c990d3d098d121fcd1ccfd87af5a8922c911f). Output on CSV vs parquet is identical except the dtype notation in the schema line (e.g. `week:int64` vs `int32`). |
