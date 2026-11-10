@@ -21,7 +21,9 @@ audit_py_sha256: 7e181aa6f8d449bd09c532ebf120ba96cea47374b5b16ee6db0941506935102
 retrieved: 2026-11-09T19:30:41-05:00
 github_actions_artifacts: INACCESSIBLE in the Claude session (see section 5)
 independent_reproduction: {R6: closed, reviewer_run_of_v2.1_matches_author_run_except_dtype_label_line}
-open_items: [R5 artifact SHA256SUMS comparison]
+open_items: []
+audit_status: CLOSED 2026-11-09 (R1-R8 resolved; R5 artifact check performed by reviewer)
+artifact_checksums_verified_by_reviewer: {play_by_play_2026.parquet: match, roster_weekly_2026.csv: match}
 reconciliation_result: efficiency PASS (14/14 figures); Cook red zone PASS (28/10); turnovers PASS (counts); QB-hit PASS (rates); player hit counts PASS; 6 labeling/evidence findings (D1-D6)
 ```
 
@@ -463,7 +465,7 @@ games.csv rows 7548; 2026 rows 272. BUF@MIN wk9 row (spread_line, total_line, mo
 
 | Item | Used in this audit | Handoff artifact | Difference / status |
 |---|---|---|---|
-| Play-by-play | `https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.parquet`; retrieved 2026-11-09 19:30:41 ET; release `Last-Modified` 2026-11-09 19:48:29 GMT (2:48 PM ET), unchanged at the 19:57 ET recheck; 10,050,821 bytes | Artifact 13711131074, run 42699154336, reported as built 4:05 PM ET | **Not retrievable.** Same upstream URL (the workflow's `curl` line). The release was last modified before the 4:05 PM build and was unchanged afterward, so the artifact copy should be byte-identical, but this is unverified. To verify: compare `play_by_play_2026.parquet` against `pbp/SHA256SUMS.txt` inside the artifact. The artifact also holds 1999-2025 and `manifest.csv`, which I did not fetch. |
+| Play-by-play | `https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.parquet`; retrieved 2026-11-09 19:30:41 ET; release `Last-Modified` 2026-11-09 19:48:29 GMT (2:48 PM ET), unchanged at the 19:57 ET recheck; 10,050,821 bytes | Artifact 13711131074, run 42699154336, reported as built 4:05 PM ET | **Not retrievable by the author; byte identity later confirmed by the reviewer (R5).** Same upstream URL (the workflow's `curl` line). The release was last modified before the 4:05 PM build and was unchanged afterward, so the artifact copy should be byte-identical, and the reviewer's later check of `SHA256SUMS.txt` confirms it (section 9, R5). Original method: compare `play_by_play_2026.parquet` against `pbp/SHA256SUMS.txt` inside the artifact. The artifact also holds 1999-2025 and `manifest.csv`, which I did not fetch. |
 | Weekly rosters | `.../releases/download/weekly_rosters/roster_weekly_2026.csv`; same retrieval time; release `Last-Modified` 2026-11-09 17:34:23 GMT (12:34 PM ET); 7,281,670 bytes | Artifact 13710095041, run 42696340691, reported 3:47 PM ET | Not retrievable. Same upstream file; the artifact wraps 2002-2026 in a `.tar.gz` with `manifest.csv` and `SHA256SUMS.txt`. Same verification route. |
 | Schedule / lines | nfldata `games.csv` (raw.githubusercontent), 7,548 rows, 2026 rows 272 | Artifact 13643140837, run 42544692899, coverage 2002-2025 | **Different source and different coverage.** The workflow downloads `releases/download/schedules/games.csv` and exports `games_2002_2025.csv`, so the artifact has no 2026 rows. The 2026 schedule and lines in my reports are not from the artifact. |
 | Scoring / TD ledger | not used | Artifact 13711444803, run 42702775512 | Not retrievable. Built from PBP by `scripts/build_scoring_event_ledger.py`; TDs here come from PBP fields. |
@@ -505,6 +507,8 @@ The Bet Model produced no calibrated projection (no fair spread, fair total or w
 
 Python 3 with pandas, pyarrow and tabulate; the script is deterministic.
 
+**Final status: AUDIT CLOSED 2026-11-09. R1-R8 resolved; D1-D6 remain recorded findings; no frozen classification changed.**
+
 ## 9. Review log (code review of audit.py v1, SHA-256 6af0bf75...b875; v2 was a57e36c6...0e04; current is v2.1)
 
 | # | Review item | Disposition in v2 of the script/supplement |
@@ -513,10 +517,10 @@ Python 3 with pandas, pyarrow and tabulate; the script is deterministic.
 | R2 | Section 2 text said `pass_attempt==1` excludes sacks | Fixed: text now says box-score attempt = `pass_attempt==1 & sack!=1` and that the raw flag equals dropbacks in this file. No number changed. |
 | R3 | Team red-zone comparison broader than the player count | Fixed: described as a raw `rush==1` flag count with no play_type or rusher-id restriction (46 / 21 includes 1 null-rusher row). Cook's 28 / 10 is unaffected. |
 | R4 | Script never read `games.csv` | Fixed: section 8 now loads it and prints the BUF@MIN row (spread -3.5, total 45.5, ML -192 / +160, dome). The Hard Rock lines are from Nick's screenshots and are not reproducible by script. |
-| R5 | Artifact byte identity unverified | **Open, unchanged.** Needs a hash comparison against `SHA256SUMS.txt` inside the GitHub Actions artifacts, which the Claude session could not access. |
+| R5 | Artifact byte identity unverified | **Closed 2026-11-09 ~8:44 PM ET (reviewer, not the author).** Reviewer retrieved both GitHub Actions artifacts and read `SHA256SUMS.txt`: `play_by_play_2026.parquet` = 422f78930248c86facb6bae5489c612700a9d351504f82a479319af5f9600795 and `roster_weekly_2026.csv` = 5cb8857be2f49be417627b63faa26b33431a53ea6cc8398d087bebeab61c520f, both identical to the release files used in this audit. Artifact ZIP digests (per GitHub metadata): PBP 531858c8055ab5420a161e585e6d6cdeece6f20352c5ddd00592526431cca22e; roster 5278c98541614c37ed3a2f64bc3a069b367e271a33c1d268d88bc4ef886641df. The author never had artifact access; this closure rests on the reviewer's report. |
 | R6 | Numerical outputs not independently verified by the reviewer | **Closed 2026-11-09 ~8:40 PM ET.** Reviewer ran audit.py v2.1 (SHA-256 7e181aa6...5102f) on the hash-verified CSV export, roster and games files (exit 0). Reviewer output (53,449 bytes, SHA-256 aa1f9d023112e4a71e9b15808e036a147f093e2eff68d9b059ecd0da0f0b379d) was diffed line by line against the author run on the same inputs (o_csv.md, 53,023 bytes, SHA-256 daa2bdc5...ba40): one differing line, the schema dtype list (`object` vs `str`, a pandas-version label). Every table and count is identical. |
 | R7 | Lock 2 addendum not yet reviewed | **Closed.** Reviewer received and reviewed the addendum (`week9-nfl-mnf-buf-min-lock2-addendum.md`) and confirmed the official Lock 2 record is Wentz Under 215.5 (-115) LEAN, with the original pregame WATCH preserved. The D2 annotation (Murray 200.8, Wentz relief game) is carried in the ledger record. |
 
-| R8 | Reviewer environment lacked pyarrow, so R6 could not run | Script v2.1 also reads `play_by_play_2026.csv`, a lossless `to_csv` export of the parquet (SHA-256 dfcaa3c8e1963726d1a0c3be240c990d3d098d121fcd1ccfd87af5a8922c911f). Output on CSV vs parquet is identical except the dtype notation in the schema line (e.g. `week:int64` vs `int32`). |
+| R8 | Reviewer environment lacked pyarrow, so R6 could not run | Script v2.1 also reads `play_by_play_2026.csv`, a lossless `to_csv` export of the parquet (SHA-256 dfcaa3c8e1963726d1a0c3be240c990d3d098d121fcd1ccfd87af5a8922c911f). Output on CSV vs parquet is identical except the dtype notation in the schema line (e.g. `week:int64` vs `int32`). **Closed:** reviewer ran v2.1 on the CSV export (see R6). |
 
 audit.py v2.1 SHA-256: 7e181aa6f8d449bd09c532ebf120ba96cea47374b5b16ee6db0941506935102f
