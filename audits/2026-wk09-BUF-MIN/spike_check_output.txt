@@ -1,0 +1,3 @@
+rows 23647 all qb_spike rows 51 | spikes inside the audit EPA filter (play_type in pass/run): 0
+C.Wentz: dropbacks 46, attempts excl sacks (pass==1 filter, as in audit) 40, with spikes 40, spike rows 0, spike yards 0
+K.Murray: dropbacks 169, attempts excl sacks (pass==1 filter, as in audit) 154, with spikes 155, spike rows 1, spike yards 0

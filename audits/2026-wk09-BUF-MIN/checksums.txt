@@ -1,0 +1,33 @@
+# Checksums manifest: 2026 Week 9, BUF @ MIN (MNF, Mon Nov 9 2026)
+# Format: SHA-256  name   (notes)
+# Inputs NOT stored in git are listed with source URL and retrieval time. Files stored in this folder were hashed at commit time.
+
+## Inputs (not stored in git except where noted)
+422f78930248c86facb6bae5489c612700a9d351504f82a479319af5f9600795  play_by_play_2026.parquet   (pregame; https://github.com/nflverse/nflverse-data/releases/download/pbp/play_by_play_2026.parquet; retrieved 2026-11-09 19:30:41 ET; 10050821 bytes; weeks 1-9 through Nov 8; BUF@MIN not included; matches Actions artifact SHA256SUMS.txt per reviewer)
+5cb8857be2f49be417627b63faa26b33431a53ea6cc8398d087bebeab61c520f  roster_weekly_2026.csv      (https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/roster_weekly_2026.csv; retrieved 2026-11-09 19:30:41 ET; 7281670 bytes; matches Actions artifact SHA256SUMS.txt per reviewer)
+fc4f1a6f0c19e166ac3bf0a81ca52695113fd7975d9314b794b93552e6e53fc6  games.csv                   (nfldata games.csv, raw.githubusercontent; retrieved 2026-11-09 19:30:41 ET; 2189036 bytes)
+c80e4947eef23e82282451da60756ad94bdc1254d9486f2457e4ae247e52283b  play_by_play_2026.parquet   (POSTGAME copy used by postmortem.py; same URL; retrieved 2026-11-10 ~08:50 ET; release Last-Modified 2026-11-10 13:45 GMT; includes this game)
+
+## Derived input stored in this folder
+53c1b67f47370f1e176fb88f58c0c102371b8e8b49c02820c59f69a3aa5f3a39  play_by_play_2026.csv.zip  (lossless CSV export of the PREGAME parquet above)
+dfcaa3c8e1963726d1a0c3be240c990d3d098d121fcd1ccfd87af5a8922c911f  play_by_play_2026.csv      (inside the zip; 54966669 bytes)
+# ARCHIVE STATUS: no GitHub Release archive exists. Release creation was refused (HTTP 403) in the session that prepared this folder,
+# so the zip above remains committed here as the only retained copy of the exact input. Move it to a durable archive and verify
+# the hash above before ever removing it from git.
+
+## Frozen pregame records (copied unchanged; hashes equal the originals)
+ca233c882867b2f1d4a3f0f44271399ea49f1aa93445dbd045641e0c38506b1a  pregame-bet-model-card.md
+2614872b491ff5f6110567fbcdbeaf5f2e83bfd9b4c95f0c0ac2604b7fae6834  pregame-prop-model-card.md
+82169d6c9252a1c6baadbd05202169be120a9e5b8a2dd4691ecc971fcc715589  lock2-addendum.md
+
+## Scripts
+7e181aa6f8d449bd09c532ebf120ba96cea47374b5b16ee6db0941506935102f  audit.py                (v2.1; reviewer-verified)
+6c468b33af2abcdf97174b6019aa201987cd71655fd75b63ce4a049f66682f78  spike_check.py
+65863fa0d7fb0a5c7fda70e7977482dcc1cb5ff2d911c4481a2b6e92a7aab220  postmortem.py
+
+## Records and outputs
+d0f9d2cf69919f23fdf656cdaa2a836cf216b6e74ae3e9341cc93a645b823008  NFL_Audit_Supplement_BUF_at_MIN_wk9.md
+033767d30f6d819003c47f34d9a9c6af6aa1a5625fc78329d1188c76e2b03dea  week9-postmortem.md
+5d7ba6ec54597feee486e0f1c9c46037f460d788476bae624dba268bfbe8be05  audit_output_reference.md   (author output, parquet input)
+aa1f9d023112e4a71e9b15808e036a147f093e2eff68d9b059ecd0da0f0b379d  reviewer_output_v21.md       (reviewer output, CSV input)
+54401477be2ef2003a7aedd8bd5fc2a70ddb4aee9f23e465978120700fbf06f3  spike_check_output.txt
