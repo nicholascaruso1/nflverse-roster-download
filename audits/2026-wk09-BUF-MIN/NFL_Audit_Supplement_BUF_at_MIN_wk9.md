@@ -22,6 +22,7 @@ retrieved: 2026-11-09T19:30:41-05:00
 github_actions_artifacts: INACCESSIBLE in the Claude session (see section 5)
 independent_reproduction: {R6: closed, reviewer_run_of_v2.1_matches_author_run_except_dtype_label_line}
 open_items: []
+post_closure_notes: ["2026-11-10 D1 spike-filter sensitivity: Murray 154 -> 155 if spike counted, Wentz unchanged at 40, no other figure affected (section 10)"]
 audit_status: CLOSED 2026-11-09 (R1-R8 resolved; R5 artifact check performed by reviewer)
 artifact_checksums_verified_by_reviewer: {play_by_play_2026.parquet: match, roster_weekly_2026.csv: match}
 reconciliation_result: efficiency PASS (14/14 figures); Cook red zone PASS (28/10); turnovers PASS (counts); QB-hit PASS (rates); player hit counts PASS; 6 labeling/evidence findings (D1-D6)
@@ -524,3 +525,15 @@ Python 3 with pandas, pyarrow and tabulate; the script is deterministic.
 | R8 | Reviewer environment lacked pyarrow, so R6 could not run | Script v2.1 also reads `play_by_play_2026.csv`, a lossless `to_csv` export of the parquet (SHA-256 dfcaa3c8e1963726d1a0c3be240c990d3d098d121fcd1ccfd87af5a8922c911f). Output on CSV vs parquet is identical except the dtype notation in the schema line (e.g. `week:int64` vs `int32`). **Closed:** reviewer ran v2.1 on the CSV export (see R6). |
 
 audit.py v2.1 SHA-256: 7e181aa6f8d449bd09c532ebf120ba96cea47374b5b16ee6db0941506935102f
+
+## 10. Post-closure note: D1 spike-filter sensitivity (2026-11-10)
+
+Raised during the Week 9 postmortem: `qb_spike` rows carry `pass_attempt==1` but `pass==0`, so the audit's `pass==1` attempt filter omits them while an official box score counts a spike as an attempt. Checked with `spike_check.py` on the pregame PBP (SHA-256 422f7893...0795); output in `spike_check_output.txt`.
+
+| Item | Result |
+|---|---|
+| Spike rows inside the audit EPA/SR filter (`play_type` in pass/run) | 0 of 51 in the file. **No efficiency, EPA, success-rate, yardage or QB-hit figure changes.** |
+| Wentz (weeks 1-2) | 0 spikes. Attempts excluding sacks stay **40** (20 + 20). D1's open 39-vs-40 gap against NFL.com is **not** explained by spikes. |
+| Murray (weeks 1, 3, 4, 5, 7, 8) | 1 spike (week 5, 0 yards). Attempts excluding sacks are **154** under the audit filter and **155** with the spike counted. Per-game attempts 25.7 becomes 25.8. |
+
+Disposition: a counting-convention sensitivity of one attempt for Murray, with no effect on any reconciliation result, finding severity or frozen classification. **Audit status stays CLOSED.** `audit.py` v2.1 (SHA-256 7e181aa6...5102f) is unchanged so the reviewer-verified hash still applies; the sensitivity is documented here and in `spike_check.py` instead. D1's "Murray 154" should be read as "154 on the `pass==1` filter; 155 if the week-5 spike is counted". The frozen reports are not rewritten.
