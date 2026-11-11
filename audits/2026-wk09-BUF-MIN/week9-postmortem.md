@@ -48,9 +48,15 @@ Prices are Hard Rock Lock 2 (7:31 PM ET) except where noted. Only a LEAN or high
 
 | Prop | Frozen status | Line / price | Actual | Result |
 |---|---|---|---|---|
-| **Wentz Under passing yards** | **LEAN** (Lock 2; original card WATCH) | U 215.5 (-115) | Wentz 81 yards (8 of 25, 2 INT, 1 sack, 1 fumble lost) | **Result: Under by 134.5 yards. Grade: PENDING** the injury rule below. |
+| **Wentz Under passing yards** | **LEAN** (Lock 2; original card WATCH) | U 215.5 (-115) | Wentz 81 yards (8 of 25, 2 INT, 1 sack, 1 fumble lost) | **Result: Under by 134.5 yards. Grade: WIN** (final on current evidence; basis and reopen condition in the note below). |
 
-**VOID note (open item, grade pending).** The Lock 2 rule makes a Wentz injury exit an injury-censored result, outside the win/loss denominator. His last dropback was at 5:41 of Q4, MIN down 14; Brosmer took over at 4:40, down 17. The play-by-play has no injury notation for Wentz (the only injury text for either QB is Jefferson's in Q1). The reviewer reports an AP/CBS item saying Wentz was examined in the medical tent for an apparent lower-leg issue before being replaced. I could not retrieve that item, and the NFL.com recap I could read says nothing about an injury or why he left, so the claim is **unverified by me**. The statistical result cannot change (he would have needed 134.5 more yards in under five minutes). The official grade stays **pending**: win if the removal was the coach's decision, VOID if injury is confirmed as the reason. The frozen Lock 2 LEAN is untouched.
+**Removal note (grade finalized 2026-11-10 on secondary reporting).** Wentz's last dropback was at 5:41 of Q4, MIN down 14; Brosmer took over at 4:40, down 17. The Lock 2 rule makes an injury exit injury-censored (VOID). Evidence on why he left:
+- **Undrafted recap (theundrafted.org, Nov 10):** "coach Kevin O'Connell benched Wentz for Brosmer late in the fourth quarter with the Vikings down three scores." The same piece describes a separate earlier incident: Wentz "had his foot stepped on by teammate Joe Huber, an offensive lineman, on that snap and went to the medical tent while Max Brosmer warmed up, though he stayed in the game." It does not tie the removal to an injury.
+- **Yahoo Sports (Chiefs Wire/USA Today):** headline says "benched"; body says only that he "had been replaced" and gives no reason.
+- **Reviewer's AP/CBS item (medical-tent evaluation):** not retrieved by me. The Undrafted account is consistent with it: a tent visit earlier in the game that he played through.
+- **PBP:** no injury notation for Wentz; the only injury text for either QB is Jefferson's in Q1.
+
+Read together, the only source that states a cause says coach's decision, the medical-tent visit preceded the removal and he stayed in, and no source says injury caused the exit. **Grade: WIN.** Caveat: this rests on secondary reporting, not a direct O'Connell quote or a team statement, and one source is an unsigned recap. **Reopen condition:** a primary source (O'Connell, the Vikings, or the official injury report) stating that injury caused the removal moves it to VOID. The statistical result (Under by 134.5 yards, 81 yards) is unaffected either way. The frozen Lock 2 LEAN is untouched.
 
 ### WATCH calls (not graded as wins/losses; recorded as "would have")
 
@@ -82,7 +88,7 @@ PASS rows are not bets. Their outcomes are not evidence against the PASS rule, s
 
 | | Count |
 |---|---|
-| Official model calls (LEAN or above) | 1 (Wentz Under): result Under, grade pending the injury rule |
+| Official model calls (LEAN or above) | 1 (Wentz Under): Under by 134.5 yards, graded **WIN** (secondary sourcing, reopen if a primary source says injury) |
 | WATCH calls that would have won | 3 of 3 |
 | Bet Model BET / LEAN | 0 |
 
@@ -96,14 +102,14 @@ PASS rows are not bets. Their outcomes are not evidence against the PASS rule, s
 2. **Double-counting rule held.** The Wentz start was not stacked on top of its price.
 3. **Hard Rock Lock 2 prices mattered.** The Wentz upgrade to LEAN used a verified price; the same card could not name Cook's carries price. The Cook line is still unverified, so that WATCH remains a WATCH on a non-verified basis.
 4. **Data caveat:** PBP attempts must count spikes to match the official box (`pass_attempt==1` on `qb_spike` rows). Fixed in `postmortem.py`.
-5. **Wentz exit reason is unconfirmed** and could change the Wentz LEAN's bookkeeping (VOID vs win), not its outcome.
+5. **Wentz exit reason** is supported as a coach's decision by secondary reporting, so the LEAN is graded a win. A primary source saying otherwise would reopen it.
 6. **Game-control context from the official box (cross-check):** BUF 79 plays to MIN 46, MIN 0 for 8 on third down (PBP agrees: 8 third-down plays, 0 converted).
 
 ## 5. Open items
 
 | Item | Needed |
 |---|---|
-| Why Wentz was replaced (injury or coach's decision) | The AP/CBS medical-tent report (reviewer-cited, not retrieved by me) or a team statement. Decides win vs VOID bookkeeping. |
+| Primary-source confirmation of Wentz's removal | O'Connell's postgame quote or the Vikings' Wednesday injury report. Only needed if you want the WIN to rest on a primary source; a contrary statement moves it to VOID. |
 | Cook carries price | A Hard Rock screenshot from before the game, if it exists. Otherwise it stays unverified. |
 | Coverage gap | Beckham Jr. and Yurosek were on the Lock 2 board but never screened. |
 
@@ -123,4 +129,6 @@ Both stay research candidates. Neither is supported by one game; any change woul
 - Postgame nflverse PBP (release Last-Modified 2026-11-10 13:45 GMT), SHA-256 c80e4947eef23e82282451da60756ad94bdc1254d9486f2457e4ae247e52283b. Used for every figure, via `postmortem.py`.
 - Sports-data feed (SportRadar-based) team box score and scoring plays. Used for the cross-check.
 - [NFL.com, "What We Learned from Buffalo's 23-6 win over Minnesota"](https://www.nfl.com/news/bills-vikings-on-monday-night-football-what-we-learned-from-buffalo-s-23-6-win-over-minnesota). Read by me: Wentz 8 of 25, 81 yards, 2 INT, 8.9 passer rating. It says nothing about an injury or why he left.
-- Vikings.com postgame recap and an AP report carried by CBS Sports. **Cited by the reviewer (ChatGPT), not retrieved by me.** Basis for the 8/25 line, the lost fumble, and the report that Wentz was examined in the medical tent for an apparent lower-leg issue. The injury claim stays unverified here, and the Wentz Under grade stays pending.
+- Vikings.com postgame recap and an AP report carried by CBS Sports. **Cited by the reviewer (ChatGPT), not retrieved by me.** Basis for the 8/25 line, the lost fumble, and the medical-tent report.
+- [Undrafted recap, "Carson Wentz Benched as Josh Allen, James Cook and the Bills Grind Down the Vikings on Monday Night Football"](https://www.theundrafted.org/articles/bills-vikings-week-9-recap-carson-wentz-benched-james-cook) (Nov 10). Read by me: states O'Connell benched Wentz late in Q4; separate foot-stepped-on tent visit, he stayed in.
+- [Yahoo Sports, "Ex-Chiefs QB benched by Vikings on 'Monday Night Football' in Week 9"](https://sports.yahoo.com/articles/ex-chiefs-qb-benched-vikings-045313660.html). Read by me: headline only says benched; no reason in the body.
