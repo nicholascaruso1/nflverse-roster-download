@@ -1,0 +1,38 @@
+franchise_id,code,season_start,season_end,city,nickname,display_name
+ARI,ARI,1999,2099,Arizona,Cardinals,Arizona Cardinals
+ATL,ATL,1999,2099,Atlanta,Falcons,Atlanta Falcons
+BAL,BAL,1999,2099,Baltimore,Ravens,Baltimore Ravens
+BUF,BUF,1999,2099,Buffalo,Bills,Buffalo Bills
+CAR,CAR,1999,2099,Carolina,Panthers,Carolina Panthers
+CHI,CHI,1999,2099,Chicago,Bears,Chicago Bears
+CIN,CIN,1999,2099,Cincinnati,Bengals,Cincinnati Bengals
+CLE,CLE,1999,2099,Cleveland,Browns,Cleveland Browns
+DAL,DAL,1999,2099,Dallas,Cowboys,Dallas Cowboys
+DEN,DEN,1999,2099,Denver,Broncos,Denver Broncos
+DET,DET,1999,2099,Detroit,Lions,Detroit Lions
+GB,GB,1999,2099,Green Bay,Packers,Green Bay Packers
+HOU,HOU,2002,2099,Houston,Texans,Houston Texans
+IND,IND,1999,2099,Indianapolis,Colts,Indianapolis Colts
+JAX,JAX,1999,2099,Jacksonville,Jaguars,Jacksonville Jaguars
+KC,KC,1999,2099,Kansas City,Chiefs,Kansas City Chiefs
+MIA,MIA,1999,2099,Miami,Dolphins,Miami Dolphins
+MIN,MIN,1999,2099,Minnesota,Vikings,Minnesota Vikings
+NE,NE,1999,2099,New England,Patriots,New England Patriots
+NO,NO,1999,2099,New Orleans,Saints,New Orleans Saints
+NYG,NYG,1999,2099,New York,Giants,New York Giants
+NYJ,NYJ,1999,2099,New York,Jets,New York Jets
+PHI,PHI,1999,2099,Philadelphia,Eagles,Philadelphia Eagles
+PIT,PIT,1999,2099,Pittsburgh,Steelers,Pittsburgh Steelers
+SEA,SEA,1999,2099,Seattle,Seahawks,Seattle Seahawks
+TB,TB,1999,2099,Tampa Bay,Buccaneers,Tampa Bay Buccaneers
+TEN,TEN,1999,2099,Tennessee,Titans,Tennessee Titans
+SF,SF,1999,2099,San Francisco,Forty Niners,San Francisco 49ers
+LV,OAK,1999,2019,Oakland,Raiders,Oakland Raiders
+LV,LV,2020,2099,Las Vegas,Raiders,Las Vegas Raiders
+LAC,SD,1999,2016,San Diego,Chargers,San Diego Chargers
+LAC,LAC,2017,2099,Los Angeles,Chargers,Los Angeles Chargers
+LA,STL,1999,2015,St. Louis,Rams,St. Louis Rams
+LA,LA,2016,2099,Los Angeles,Rams,Los Angeles Rams
+WAS,WAS,1999,2019,Washington,Redskins,Washington Redskins
+WAS,WAS,2020,2021,Washington,Football Team,Washington Football Team
+WAS,WAS,2022,2099,Washington,Commanders,Washington Commanders
