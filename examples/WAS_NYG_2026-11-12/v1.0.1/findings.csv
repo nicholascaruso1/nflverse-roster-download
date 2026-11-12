@@ -1,0 +1,80 @@
+category,finding,value,caveat,feature_id,family_id,team,name_basis,match_type,data_quality
+records,Mirrored current-season records,WAS 2-5-1 / NYG 5-2-1,Descriptive symmetry; not a winner prediction.,records.mirrored_current_season,records.mirrored,,n/a,descriptive,official_schedule_result
+records,WAS current-season record,2-5-1,Regular season games before target date.,records.current_season_record,records.current_season,WAS,n/a,descriptive,official_schedule_result
+records,WAS current-season win pct,0.312,(W + 0.5*T)/G.,records.current_season_win_pct,records.current_season,WAS,n/a,descriptive,official_schedule_result
+records,NYG current-season record,5-2-1,Regular season games before target date.,records.current_season_record,records.current_season,NYG,n/a,descriptive,official_schedule_result
+records,NYG current-season win pct,0.688,(W + 0.5*T)/G.,records.current_season_win_pct,records.current_season,NYG,n/a,descriptive,official_schedule_result
+schedule_records,WAS all-Thursday record,7-14-0,Every Thursday regular-season game; not branded TNF.,schedule.all_thursday_record,schedule.slot_records,WAS,n/a,descriptive,schedule_derived
+schedule_records,WAS Thursday (excl. Thanksgiving) record,4-10-0,Not branded TNF.,schedule.thursday_excl_thanksgiving_record,schedule.slot_records,WAS,n/a,descriptive,schedule_derived
+schedule_records,WAS Thursday >=7 PM ET proxy record (excl. Thanksgiving),3-9-0,Schedule-time proxy only; NOT a TNF record (includes pre-2006 and kickoff-night games).,schedule.thursday_evening_proxy_record,schedule.slot_records,WAS,n/a,descriptive,schedule_proxy_not_tnf
+schedule_records,WAS Thanksgiving Thursday record,3-4-0,Thanksgiving games are not branded TNF.,schedule.thanksgiving_record,schedule.slot_records,WAS,n/a,descriptive,schedule_derived
+schedule_records,WAS Sunday >=7 PM ET proxy record,13-14-0,Schedule-time proxy; not a verified package label.,schedule.sunday_night_proxy_record,schedule.slot_records,WAS,n/a,descriptive,schedule_proxy_not_tnf
+schedule_records,WAS Monday >=7 PM ET proxy record,6-20-0,Schedule-time proxy; not a verified package label.,schedule.monday_night_proxy_record,schedule.slot_records,WAS,n/a,descriptive,schedule_proxy_not_tnf
+schedule_records,WAS branded TNF record (verified table),unavailable: no verified branded-TNF table,Branded TNF is never inferred from Thursday or kickoff times.,schedule.branded_tnf_verified_record,schedule.slot_records,WAS,n/a,descriptive,unavailable
+calendar,WAS days since last Thursday win,1491,Last qualifying Thursday win: 2022-10-13.,calendar.days_since_last_thursday_win,calendar.since_last_thursday_win,WAS,n/a,descriptive,schedule_derived
+calendar,WAS calendar-month boundaries since last Thursday win,49,"Last qualifying Thursday win: 2022-10-13. Counts month boundaries crossed, not completed months.",calendar.month_boundaries_since_last_thursday_win,calendar.since_last_thursday_win,WAS,n/a,descriptive,schedule_derived
+calendar,WAS completed calendar months since last Thursday win,48,Last qualifying Thursday win: 2022-10-13.,calendar.completed_months_since_last_thursday_win,calendar.since_last_thursday_win,WAS,n/a,descriptive,schedule_derived
+schedule_records,NYG all-Thursday record,5-13-0,Every Thursday regular-season game; not branded TNF.,schedule.all_thursday_record,schedule.slot_records,NYG,n/a,descriptive,schedule_derived
+schedule_records,NYG Thursday (excl. Thanksgiving) record,5-9-0,Not branded TNF.,schedule.thursday_excl_thanksgiving_record,schedule.slot_records,NYG,n/a,descriptive,schedule_derived
+schedule_records,NYG Thursday >=7 PM ET proxy record (excl. Thanksgiving),5-9-0,Schedule-time proxy only; NOT a TNF record (includes pre-2006 and kickoff-night games).,schedule.thursday_evening_proxy_record,schedule.slot_records,NYG,n/a,descriptive,schedule_proxy_not_tnf
+schedule_records,NYG Thanksgiving Thursday record,0-4-0,Thanksgiving games are not branded TNF.,schedule.thanksgiving_record,schedule.slot_records,NYG,n/a,descriptive,schedule_derived
+schedule_records,NYG Sunday >=7 PM ET proxy record,18-27-0,Schedule-time proxy; not a verified package label.,schedule.sunday_night_proxy_record,schedule.slot_records,NYG,n/a,descriptive,schedule_proxy_not_tnf
+schedule_records,NYG Monday >=7 PM ET proxy record,12-21-0,Schedule-time proxy; not a verified package label.,schedule.monday_night_proxy_record,schedule.slot_records,NYG,n/a,descriptive,schedule_proxy_not_tnf
+schedule_records,NYG branded TNF record (verified table),unavailable: no verified branded-TNF table,Branded TNF is never inferred from Thursday or kickoff times.,schedule.branded_tnf_verified_record,schedule.slot_records,NYG,n/a,descriptive,unavailable
+calendar,NYG days since last Thursday win,399,Last qualifying Thursday win: 2025-10-09.,calendar.days_since_last_thursday_win,calendar.since_last_thursday_win,NYG,n/a,descriptive,schedule_derived
+calendar,NYG calendar-month boundaries since last Thursday win,13,"Last qualifying Thursday win: 2025-10-09. Counts month boundaries crossed, not completed months.",calendar.month_boundaries_since_last_thursday_win,calendar.since_last_thursday_win,NYG,n/a,descriptive,schedule_derived
+calendar,NYG completed calendar months since last Thursday win,13,Last qualifying Thursday win: 2025-10-09.,calendar.completed_months_since_last_thursday_win,calendar.since_last_thursday_win,NYG,n/a,descriptive,schedule_derived
+head_to_head,Previous meeting was tied,27-27 on 2026-10-11,Historical context only; not a rematch prediction.,head_to_head.previous_meeting_tied,head_to_head.previous_meeting_tied,,n/a,descriptive,official_schedule_result
+calendar,"Days remaining in calendar year, excluding game date",49,December 31 of the target's calendar year minus target date.,calendar.days_remaining_in_year,calendar.date,,n/a,descriptive,computed
+calendar,Date digit sum,15,Date format YYYYMMDD.,calendar.date_digit_sum,calendar.date,,n/a,descriptive,computed
+calendar,Date digital root,6,Date format YYYYMMDD.,calendar.date_digit_root,calendar.date,,n/a,descriptive,computed
+calendar,Weekday number,4,ISO weekday: Monday=1 through Sunday=7.,calendar.weekday_number,calendar.weekday,,n/a,descriptive,computed
+calendar,Weekday digital root,4,ISO weekday: Monday=1 through Sunday=7.,calendar.weekday_root,calendar.weekday,,n/a,descriptive,computed
+gematria,WAS historical city ordinal,130,String: WASHINGTON,gematria.city.ordinal,gematria.WAS.historical.city,WAS,historical,value,computed
+gematria,WAS historical city ordinal_root,4,String: WASHINGTON,gematria.city.ordinal_root,gematria.WAS.historical.city,WAS,historical,value,computed
+gematria,WAS historical city reverse_ordinal,140,String: WASHINGTON,gematria.city.reverse_ordinal,gematria.WAS.historical.city,WAS,historical,value,computed
+gematria,WAS historical city reverse_root,5,String: WASHINGTON,gematria.city.reverse_root,gematria.WAS.historical.city,WAS,historical,value,computed
+gematria,WAS historical city pythagorean,49,String: WASHINGTON,gematria.city.pythagorean,gematria.WAS.historical.city,WAS,historical,value,computed
+gematria,WAS historical city pythagorean_root,4,String: WASHINGTON,gematria.city.pythagorean_root,gematria.WAS.historical.city,WAS,historical,value,computed
+gematria,WAS historical nickname ordinal,105,String: COMMANDERS,gematria.nickname.ordinal,gematria.WAS.historical.nickname,WAS,historical,value,computed
+gematria,WAS historical nickname ordinal_root,6,String: COMMANDERS,gematria.nickname.ordinal_root,gematria.WAS.historical.nickname,WAS,historical,value,computed
+gematria,WAS historical nickname reverse_ordinal,165,String: COMMANDERS,gematria.nickname.reverse_ordinal,gematria.WAS.historical.nickname,WAS,historical,value,computed
+gematria,WAS historical nickname reverse_root,3,String: COMMANDERS,gematria.nickname.reverse_root,gematria.WAS.historical.nickname,WAS,historical,value,computed
+gematria,WAS historical nickname pythagorean,42,String: COMMANDERS,gematria.nickname.pythagorean,gematria.WAS.historical.nickname,WAS,historical,value,computed
+gematria,WAS historical nickname pythagorean_root,6,String: COMMANDERS,gematria.nickname.pythagorean_root,gematria.WAS.historical.nickname,WAS,historical,value,computed
+gematria,WAS historical full_identity ordinal,235,String: WASHINGTON COMMANDERS,gematria.full_identity.ordinal,gematria.WAS.historical.full_identity,WAS,historical,value,computed
+gematria,WAS historical full_identity ordinal_root,1,String: WASHINGTON COMMANDERS,gematria.full_identity.ordinal_root,gematria.WAS.historical.full_identity,WAS,historical,value,computed
+gematria,WAS historical full_identity reverse_ordinal,305,String: WASHINGTON COMMANDERS,gematria.full_identity.reverse_ordinal,gematria.WAS.historical.full_identity,WAS,historical,value,computed
+gematria,WAS historical full_identity reverse_root,8,String: WASHINGTON COMMANDERS,gematria.full_identity.reverse_root,gematria.WAS.historical.full_identity,WAS,historical,value,computed
+gematria,WAS historical full_identity pythagorean,91,String: WASHINGTON COMMANDERS,gematria.full_identity.pythagorean,gematria.WAS.historical.full_identity,WAS,historical,value,computed
+gematria,WAS historical full_identity pythagorean_root,1,String: WASHINGTON COMMANDERS,gematria.full_identity.pythagorean_root,gematria.WAS.historical.full_identity,WAS,historical,value,computed
+gematria,NYG historical city ordinal,111,String: NEW YORK,gematria.city.ordinal,gematria.NYG.historical.city,NYG,historical,value,computed
+gematria,NYG historical city ordinal_root,3,String: NEW YORK,gematria.city.ordinal_root,gematria.NYG.historical.city,NYG,historical,value,computed
+gematria,NYG historical city reverse_ordinal,78,String: NEW YORK,gematria.city.reverse_ordinal,gematria.NYG.historical.city,NYG,historical,value,computed
+gematria,NYG historical city reverse_root,6,String: NEW YORK,gematria.city.reverse_root,gematria.NYG.historical.city,NYG,historical,value,computed
+gematria,NYG historical city pythagorean,39,String: NEW YORK,gematria.city.pythagorean,gematria.NYG.historical.city,NYG,historical,value,computed
+gematria,NYG historical city pythagorean_root,3,String: NEW YORK,gematria.city.pythagorean_root,gematria.NYG.historical.city,NYG,historical,value,computed
+gematria,NYG historical nickname ordinal,70,String: GIANTS,gematria.nickname.ordinal,gematria.NYG.historical.nickname,NYG,historical,value,computed
+gematria,NYG historical nickname ordinal_root,7,String: GIANTS,gematria.nickname.ordinal_root,gematria.NYG.historical.nickname,NYG,historical,value,computed
+gematria,NYG historical nickname reverse_ordinal,92,String: GIANTS,gematria.nickname.reverse_ordinal,gematria.NYG.historical.nickname,NYG,historical,value,computed
+gematria,NYG historical nickname reverse_root,2,String: GIANTS,gematria.nickname.reverse_root,gematria.NYG.historical.nickname,NYG,historical,value,computed
+gematria,NYG historical nickname pythagorean,25,String: GIANTS,gematria.nickname.pythagorean,gematria.NYG.historical.nickname,NYG,historical,value,computed
+gematria,NYG historical nickname pythagorean_root,7,String: GIANTS,gematria.nickname.pythagorean_root,gematria.NYG.historical.nickname,NYG,historical,value,computed
+gematria,NYG historical full_identity ordinal,181,String: NEW YORK GIANTS,gematria.full_identity.ordinal,gematria.NYG.historical.full_identity,NYG,historical,value,computed
+gematria,NYG historical full_identity ordinal_root,1,String: NEW YORK GIANTS,gematria.full_identity.ordinal_root,gematria.NYG.historical.full_identity,NYG,historical,value,computed
+gematria,NYG historical full_identity reverse_ordinal,170,String: NEW YORK GIANTS,gematria.full_identity.reverse_ordinal,gematria.NYG.historical.full_identity,NYG,historical,value,computed
+gematria,NYG historical full_identity reverse_root,8,String: NEW YORK GIANTS,gematria.full_identity.reverse_root,gematria.NYG.historical.full_identity,NYG,historical,value,computed
+gematria,NYG historical full_identity pythagorean,64,String: NEW YORK GIANTS,gematria.full_identity.pythagorean,gematria.NYG.historical.full_identity,NYG,historical,value,computed
+gematria,NYG historical full_identity pythagorean_root,1,String: NEW YORK GIANTS,gematria.full_identity.pythagorean_root,gematria.NYG.historical.full_identity,NYG,historical,value,computed
+base_rates,Historical exact 27-27 frequency,3/7103 (0.042%),Completed regular-season games in supplied schedule file; in-sample.,base_rates.exact_27_27,base_rates.exact_27_27,,n/a,descriptive,computed
+base_rates,Historical total-54 frequency,145/7103 (2.041%),Completed regular-season games; descriptive only.,base_rates.total_54,base_rates.total_54,,n/a,descriptive,computed
+streaks,Days since WAS last win,11,Last regular-season win: 2026-11-01; target date excluded; playoffs excluded.,streaks.days_since_last_win,streaks.days_since,WAS,n/a,descriptive,official_schedule_result
+streaks,Days since WAS last loss,4,Last regular-season loss: 2026-11-08; target date excluded; playoffs excluded.,streaks.days_since_last_loss,streaks.days_since,WAS,n/a,descriptive,official_schedule_result
+streaks,Days since NYG last win,4,Last regular-season win: 2026-11-08; target date excluded; playoffs excluded.,streaks.days_since_last_win,streaks.days_since,NYG,n/a,descriptive,official_schedule_result
+streaks,Days since NYG last loss,25,Last regular-season loss: 2026-10-18; target date excluded; playoffs excluded.,streaks.days_since_last_loss,streaks.days_since,NYG,n/a,descriptive,official_schedule_result
+player_names,Jon Runyan matches COMMANDERS,pythagorean,Name-value match only; no player-performance inference. Systems listed are dependent (one family).,player_names.exact_match_vs_opponent_nickname,player_names.NYG.Jon Runyan.historical,NYG,historical,exact,roster_snapshot_timing_unverified
+player_names,Basil Okoye matches COMMANDERS,pythagorean,Name-value match only; no player-performance inference. Systems listed are dependent (one family).,player_names.exact_match_vs_opponent_nickname,player_names.NYG.Basil Okoye.historical,NYG,historical,exact,roster_snapshot_timing_unverified
+player_names,Malik Nabers matches COMMANDERS,"ordinal,pythagorean",Name-value match only; no player-performance inference. Systems listed are dependent (one family).,player_names.exact_match_vs_opponent_nickname,player_names.NYG.Malik Nabers.historical,NYG,historical,exact,roster_snapshot_timing_unverified
+player_names,Abdul Carter matches COMMANDERS,"ordinal,pythagorean",Name-value match only; no player-performance inference. Systems listed are dependent (one family).,player_names.exact_match_vs_opponent_nickname,player_names.NYG.Abdul Carter.historical,NYG,historical,exact,roster_snapshot_timing_unverified
+claim_audit,WAS external TNF claim vs verified TNF table,claimed 3-9; verified unavailable (no verified branded-TNF table),Unverified until a verified table exists. Thursday >=7 PM proxy for context only: 3-9-0 (not TNF).,claim_audit.external_tnf_record,claim_audit.tnf,WAS,n/a,claim,external_claim_unverified
+claim_audit,NYG external TNF claim vs verified TNF table,claimed 4-8; verified unavailable (no verified branded-TNF table),Unverified until a verified table exists. Thursday >=7 PM proxy for context only: 5-9-0 (not TNF).,claim_audit.external_tnf_record,claim_audit.tnf,NYG,n/a,claim,external_claim_unverified
