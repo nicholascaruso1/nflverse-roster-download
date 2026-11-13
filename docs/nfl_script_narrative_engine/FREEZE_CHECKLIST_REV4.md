@@ -1,5 +1,5 @@
 # Freeze checklist and consistency review — revision 4 (2026-11-13; updated for the proposed commit)
-State: registry NOT_FROZEN · PR #3 open/unmerged · main untouched · no commits · no outcome joins · outcome firewall intact. This document does NOT request a freeze.
+State: registry NOT_FROZEN · PR #3 open/unmerged · main untouched · no commits · no F4/validation/holdout/prospective outcome joins · outcome firewall intact for those partitions. (Clarification 2026-11-13: the separately authorized, restricted discovery baseline fit (`reference/baseline_fit/fit_baseline_discovery.py`) did join home_score/away_score for discovery non-F4 eligible regular-season games only; coefficients are PROVISIONAL.) This document does NOT request a freeze.
 
 ## A. Checklist dispositions (items 1–24 from rev 2, updated)
 | # | Item | Disposition now |
