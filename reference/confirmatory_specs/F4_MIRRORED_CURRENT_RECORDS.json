@@ -1,0 +1,43 @@
+{
+  "feature_id": "F4_MIRRORED_CURRENT_RECORDS",
+  "tier": "A",
+  "status": "CONFIRMATORY",
+  "approval": "Approved for preregistration only by Nick on 2026-11-12 (governance review). Not evidence of an effect.",
+  "operational_definition": "Before kickoff, the two teams have mirrored regular-season records: away wins equal home losses, away losses equal home wins, and ties are equal; both teams have >= 1 completed regular-season game.",
+  "unit": "game",
+  "denominator": "All eligible completed regular-season games with valid pregame records",
+  "expected_prevalence": {
+    "discovery_1999_2018": "15.0%",
+    "validation_2019_2022": "14.6%",
+    "holdout_2023_2025": "14.3%",
+    "basis": "outcome-blind counts from Revision 1 of the v1.1 plan"
+  },
+  "hypothesis": "Mirrored-record matchups have an outcome distribution different from the prespecified season-week permutation baseline after prior-record adjustment.",
+  "direction": "Nondirectional; no team is selected by the feature",
+  "primary_outcome": [
+    "HOME_WIN",
+    "AWAY_WIN",
+    "TIE"
+  ],
+  "tie_treatment": "Report ties separately; use 0.5 only when calculating win percentage",
+  "comparison_baseline": "Season-week permutation null plus prior-record-strength adjustment",
+  "minimum_qualifying_n": "No universal cutoff; actual power and MDE must be calculated and reported before testing. Expected validation count about 154.",
+  "multiplicity_correction": "BH across the registered grid, max-T for the feature family, Holm across Tier A",
+  "promotion_criteria": "Must pass the preregistered validation test after multiplicity correction and then succeed in one clean prospective confirmation.",
+  "exposure": {
+    "discovery_1999_2018": "DISCOVERY",
+    "validation_2019_2022": "NO_CLEAN_ATTESTATION",
+    "holdout_2023_2025": "PREVIOUSLY_EXPOSED",
+    "prospective_2026_onward": "PROSPECTIVE_AFTER_FREEZE"
+  },
+  "testing_sequence": [
+    "1999-2018 discovery and exploratory development",
+    "2019-2022 validation with exposure status documented",
+    "freeze registry and its hash before any prospective outcome analysis",
+    "2023-2025 previously exposed: descriptive evidence only",
+    "2026 onward: prospective confirmation, one prespecified evaluation after the minimum sample/power requirement is reached"
+  ],
+  "stopping_rule": "PENDING_PRE_FREEZE: minimum sample, evaluation timing and stopping rule must be written here and frozen before any prospective outcome analysis. No repeated significance peeking.",
+  "data_quality": "High, subject to schedule and pregame-record reconciliation",
+  "data_requirements": "Schedule results only (pregame records); no player or TNF data"
+}

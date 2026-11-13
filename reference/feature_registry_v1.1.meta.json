@@ -1,0 +1,66 @@
+{
+  "blocked_tnf_features": [
+    "TNF_COMPLETED_MONTHS_SINCE_LAST_TNF_WIN",
+    "TNF_DAYS_SINCE_LAST_TNF_WIN",
+    "TNF_RECORD_VERIFIED"
+  ],
+  "confirmatory_features": [
+    "F4_MIRRORED_CURRENT_RECORDS"
+  ],
+  "descriptive_only_features": [
+    "F10_PLAYER_MATCH_TEAM_WIN",
+    "F1_NAME_EQ_DAYS_REMAINING",
+    "F2_NAME_EQ_DAYS_SINCE_LOSS_ALL",
+    "F2_NAME_EQ_DAYS_SINCE_LOSS_RS",
+    "F3_NAME_EQ_DAYS_SINCE_WIN_ALL",
+    "F3_NAME_EQ_DAYS_SINCE_WIN_RS",
+    "F5_PREVIOUS_MEETING_TIED_ALL",
+    "F5_PREVIOUS_MEETING_TIED_RS",
+    "F6_NAME_EQ_OWN_FINAL_SCORE",
+    "F7_GAME_TOTAL_EQ_54",
+    "F8_PLAYER_MATCH_TD_RATE",
+    "F9_PLAYER_MATCH_RECEPTIONS_YARDS"
+  ],
+  "exploratory_family_count": 84,
+  "exploratory_grid_size": 504,
+  "freeze_status": "NOT_FROZEN (v1.1 build; the freeze, with this hash, must be declared before any outcome-joined analysis or prospective evaluation)",
+  "grid_dimensions": {
+    "cipher_fields": [
+      "ordinal",
+      "ordinal_root",
+      "reverse_ordinal",
+      "reverse_root",
+      "pythagorean",
+      "pythagorean_root"
+    ],
+    "name_bases": [
+      "historical",
+      "current"
+    ],
+    "quantities": [
+      "days_remaining",
+      "date_digit_sum",
+      "date_digit_root",
+      "weekday_number",
+      "schedule_week",
+      "season_wins",
+      "season_losses",
+      "season_ties",
+      "days_since_last_win_rs",
+      "days_since_last_loss_rs",
+      "days_since_last_win_all",
+      "days_since_last_loss_all",
+      "days_since_last_thursday_win",
+      "completed_months_since_last_thursday_win"
+    ],
+    "string_kinds": [
+      "city",
+      "nickname",
+      "full_identity"
+    ]
+  },
+  "multiplicity_denominator_note": "Denominator for any exploratory test is exploratory_grid_size (all features), never the number of features someone noticed.",
+  "registry_version": "1.1.0",
+  "rows": 520,
+  "sha256": "b714c780891f656121a7945d8d3a14c8d5b84d9bdccaf7a0b42ca581117775aa"
+}
