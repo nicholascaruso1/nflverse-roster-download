@@ -1,0 +1,5 @@
+split,REG_games,eligible_equalG,F4_labels,F4_labels_match_partition_flag,games_with_changed_stratum,F4_games_with_changed_stratum,on_support_F4_old,on_support_F4_new,supported_strata_old,supported_strata_new,on_support_F4_set_identical,partition_sha256,weekly_cumulative_on_support_identical
+discovery,4775,4062,766,True,68,0,728,728,18,18,True,fe053ea802067ab7cd14c23a5ea650897330b4a137846628cbe72249770ede0e,
+validation,991,837,154,True,14,0,84,84,11,11,True,7bc39134c7ccc7a24b094244f3a35bf9f6a56cca16d96259c8bfdef029f1e9c0,
+holdout,768,632,117,True,8,0,45,45,9,9,True,f765ec026e6062df54b0489b940488b38b954f96266e515021538d0d5ac8ff23,
+prospective,120,96,33,True,0,0,0,0,0,0,True,f178ca8921be4fe4648f28ea960dda56897f6586edf2f2079605c0763572639e,True

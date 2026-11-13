@@ -1,0 +1,26 @@
+[
+  {
+    "null": "latent_sd0.60_edge0.20",
+    "R": 2000,
+    "B": 199,
+    "seed": 20261114,
+    "refit_in_each_permutation_type1": 0.047,
+    "mc_se": 0.00473238840333293
+  },
+  {
+    "null": "STRESS_gslope",
+    "R": 2000,
+    "B": 199,
+    "seed": 20261114,
+    "refit_in_each_permutation_type1": 0.034,
+    "mc_se": 0.0040524066923249445
+  },
+  {
+    "null": "STRESS_equalG_bonus_large",
+    "R": 2000,
+    "B": 199,
+    "seed": 20261114,
+    "refit_in_each_permutation_type1": 0.0465,
+    "mc_se": 0.004708383480558906
+  }
+]

@@ -1,0 +1,75 @@
+{
+  "blocked_tnf_features": [
+    "TNF_COMPLETED_MONTHS_SINCE_LAST_TNF_WIN",
+    "TNF_DAYS_SINCE_LAST_TNF_WIN",
+    "TNF_RECORD_VERIFIED"
+  ],
+  "confirmatory_features": [
+    "F4_MIRRORED_CURRENT_RECORDS"
+  ],
+  "descriptive_only_features": [
+    "F10_PLAYER_MATCH_TEAM_WIN",
+    "F1_NAME_EQ_DAYS_REMAINING",
+    "F2_NAME_EQ_DAYS_SINCE_LOSS_ALL",
+    "F2_NAME_EQ_DAYS_SINCE_LOSS_RS",
+    "F3_NAME_EQ_DAYS_SINCE_WIN_ALL",
+    "F3_NAME_EQ_DAYS_SINCE_WIN_RS",
+    "F5_PREVIOUS_MEETING_TIED_ALL",
+    "F5_PREVIOUS_MEETING_TIED_RS",
+    "F6_NAME_EQ_OWN_FINAL_SCORE",
+    "F7_GAME_TOTAL_EQ_54",
+    "F8_PLAYER_MATCH_TD_RATE",
+    "F9_PLAYER_MATCH_RECEPTIONS_YARDS"
+  ],
+  "exploratory_family_count": 84,
+  "exploratory_grid_size": 504,
+  "f4_stopping_rule": "A2: single evaluation when cumulative on-support F4 games >= 188 (see confirmatory_specs)",
+  "freeze_status": "NOT_FROZEN (v1.1 build; the freeze, with this hash, must be declared before any outcome-joined analysis or prospective evaluation)",
+  "grid_dimensions": {
+    "cipher_fields": [
+      "ordinal",
+      "ordinal_root",
+      "reverse_ordinal",
+      "reverse_root",
+      "pythagorean",
+      "pythagorean_root"
+    ],
+    "name_bases": [
+      "historical",
+      "current"
+    ],
+    "quantities": [
+      "days_remaining",
+      "date_digit_sum",
+      "date_digit_root",
+      "weekday_number",
+      "schedule_week",
+      "season_wins",
+      "season_losses",
+      "season_ties",
+      "days_since_last_win_rs",
+      "days_since_last_loss_rs",
+      "days_since_last_win_all",
+      "days_since_last_loss_all",
+      "days_since_last_thursday_win",
+      "completed_months_since_last_thursday_win"
+    ],
+    "string_kinds": [
+      "city",
+      "nickname",
+      "full_identity"
+    ]
+  },
+  "multiplicity_denominator_note": "Nominal grid size is exploratory_grid_size (504). The denominator for any exploratory test is m, the number of equivalence classes with n_one >= 30 in the evaluated sample (Tier B definitions, revision 4); STRUCTURALLY_UNTESTABLE and EMPIRICAL_ZERO_UNTESTABLE_IN_REG_SAMPLE features keep their ids and are excluded from tests. Never the number of features someone noticed.",
+  "registry_version": "1.1.0",
+  "rows": 520,
+  "sha256": "0017183325012b9237b31b047b81346504dd7e24b316ca4748096c82eadd29c6",
+  "testability_counts": {
+    "EMPIRICAL_ZERO_UNTESTABLE_IN_REG_SAMPLE": 33,
+    "NOT_APPLICABLE": 3,
+    "STRUCTURALLY_UNTESTABLE": 98,
+    "TESTABLE_SUBJECT_TO_SAMPLE_MINIMUM": 373
+  },
+  "untestable_classification_file": "reference/untestable_features_v1.1_rev4.csv",
+  "untestable_classification_sha256": "3a8eb183d27d0f4885d5227ac56605918f5f203cafe5f5e8b4c418e1b9ea95b1"
+}

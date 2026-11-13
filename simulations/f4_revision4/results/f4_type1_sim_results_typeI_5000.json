@@ -1,0 +1,194 @@
+[
+  {
+    "label": "moderate_spread_hfa15",
+    "delta": 0.0,
+    "R": 5000,
+    "B": 199,
+    "mean_n_f4": 221.6804,
+    "mean_n_f4_on_support": 175.035,
+    "M0_seasonweek_perm": {
+      "reject_rate_alpha05": 0.042,
+      "mc_se": 0.002836758713743557
+    },
+    "M1_stratified_perm": {
+      "reject_rate_alpha05": 0.0404,
+      "mc_se": 0.0027845229393919525
+    },
+    "M2_model_z": {
+      "reject_rate_alpha05": 0.0702,
+      "mc_se": 0.003613086215411971
+    },
+    "frozen_coefs": [
+      0.0979161912989801,
+      1.697329623759408
+    ]
+  },
+  {
+    "label": "wide_spread_hfa20",
+    "delta": 0.0,
+    "R": 5000,
+    "B": 199,
+    "mean_n_f4": 204.6942,
+    "mean_n_f4_on_support": 159.955,
+    "M0_seasonweek_perm": {
+      "reject_rate_alpha05": 0.0448,
+      "mc_se": 0.002925507135523686
+    },
+    "M1_stratified_perm": {
+      "reject_rate_alpha05": 0.0446,
+      "mc_se": 0.0029192752525241603
+    },
+    "M2_model_z": {
+      "reject_rate_alpha05": 0.0598,
+      "mc_se": 0.0033533255135760383
+    },
+    "frozen_coefs": [
+      0.2179742409491188,
+      3.0089471361177167
+    ]
+  },
+  {
+    "label": "very_wide_spread_hfa25",
+    "delta": 0.0,
+    "R": 5000,
+    "B": 199,
+    "mean_n_f4": 192.0418,
+    "mean_n_f4_on_support": 147.0346,
+    "M0_seasonweek_perm": {
+      "reject_rate_alpha05": 0.0408,
+      "mc_se": 0.002797690476089162
+    },
+    "M1_stratified_perm": {
+      "reject_rate_alpha05": 0.0364,
+      "mc_se": 0.002648586037870018
+    },
+    "M2_model_z": {
+      "reject_rate_alpha05": 0.0528,
+      "mc_se": 0.003162662169755094
+    },
+    "frozen_coefs": [
+      0.25882912666812796,
+      4.52540585727139
+    ]
+  },
+  {
+    "label": "STRESS_gslope",
+    "delta": 0.0,
+    "R": 5000,
+    "B": 199,
+    "mean_n_f4": 203.4284,
+    "mean_n_f4_on_support": 158.279,
+    "M0_seasonweek_perm": {
+      "reject_rate_alpha05": 0.0432,
+      "mc_se": 0.002875195993319412
+    },
+    "M1_stratified_perm": {
+      "reject_rate_alpha05": 0.0402,
+      "mc_se": 0.00277791144567281
+    },
+    "M2_model_z": {
+      "reject_rate_alpha05": 0.0544,
+      "mc_se": 0.0032075111847038036
+    },
+    "frozen_coefs": [
+      0.1695935772324933,
+      4.535211199347016
+    ]
+  },
+  {
+    "label": "STRESS_cubic",
+    "delta": 0.0,
+    "R": 5000,
+    "B": 199,
+    "mean_n_f4": 198.051,
+    "mean_n_f4_on_support": 153.6554,
+    "M0_seasonweek_perm": {
+      "reject_rate_alpha05": 0.0432,
+      "mc_se": 0.002875195993319412
+    },
+    "M1_stratified_perm": {
+      "reject_rate_alpha05": 0.0518,
+      "mc_se": 0.003134222710657301
+    },
+    "M2_model_z": {
+      "reject_rate_alpha05": 0.0568,
+      "mc_se": 0.0032733395790843335
+    },
+    "frozen_coefs": [
+      0.16064523294256558,
+      4.323242158495189
+    ]
+  },
+  {
+    "label": "STRESS_unequalG",
+    "delta": 0.0,
+    "R": 5000,
+    "B": 199,
+    "mean_n_f4": 202.5954,
+    "mean_n_f4_on_support": 157.66,
+    "M0_seasonweek_perm": {
+      "reject_rate_alpha05": 0.0426,
+      "mc_se": 0.00285605462132642
+    },
+    "M1_stratified_perm": {
+      "reject_rate_alpha05": 0.0408,
+      "mc_se": 0.002797690476089162
+    },
+    "M2_model_z": {
+      "reject_rate_alpha05": 0.0564,
+      "mc_se": 0.0032624849424939878
+    },
+    "frozen_coefs": [
+      0.19030885898069722,
+      3.0114070896006133
+    ]
+  },
+  {
+    "label": "STRESS_equalG_bonus",
+    "delta": 0.0,
+    "R": 5000,
+    "B": 199,
+    "mean_n_f4": 205.587,
+    "mean_n_f4_on_support": 161.8104,
+    "M0_seasonweek_perm": {
+      "reject_rate_alpha05": 0.0522,
+      "mc_se": 0.003145636978419474
+    },
+    "M1_stratified_perm": {
+      "reject_rate_alpha05": 0.0468,
+      "mc_se": 0.0029869636757081596
+    },
+    "M2_model_z": {
+      "reject_rate_alpha05": 0.0588,
+      "mc_se": 0.0033269373303385203
+    },
+    "frozen_coefs": [
+      0.360723730265309,
+      3.1628014031445106
+    ]
+  },
+  {
+    "label": "STRESS_equalG_bonus_large",
+    "delta": 0.0,
+    "R": 5000,
+    "B": 199,
+    "mean_n_f4": 240.4588,
+    "mean_n_f4_on_support": 203.8752,
+    "M0_seasonweek_perm": {
+      "reject_rate_alpha05": 0.17,
+      "mc_se": 0.005312249994117371
+    },
+    "M1_stratified_perm": {
+      "reject_rate_alpha05": 0.0498,
+      "mc_se": 0.0030763601869742106
+    },
+    "M2_model_z": {
+      "reject_rate_alpha05": 0.4488,
+      "mc_se": 0.007033897354951947
+    },
+    "frozen_coefs": [
+      1.0433623659281521,
+      2.6198615126839613
+    ]
+  }
+]

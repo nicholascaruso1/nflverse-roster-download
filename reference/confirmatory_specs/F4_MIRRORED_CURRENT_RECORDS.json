@@ -1,0 +1,46 @@
+{
+  "feature_id": "F4_MIRRORED_CURRENT_RECORDS",
+  "tier": "A",
+  "status": "CONFIRMATORY",
+  "approval": "Approved for preregistration only by Nick on 2026-11-12 (governance review). Not evidence of an effect.",
+  "operational_definition": "Before kickoff, the two teams have mirrored regular-season records: away wins equal home losses, away losses equal home wins, and ties are equal; both teams have >= 1 completed regular-season game.",
+  "unit": "game",
+  "denominator": "All eligible completed regular-season games with valid pregame records",
+  "expected_prevalence": {
+    "discovery_1999_2018": "15.0%",
+    "validation_2019_2022": "14.6%",
+    "holdout_2023_2025": "14.3%",
+    "basis": "outcome-blind counts from Revision 1 of the v1.1 plan"
+  },
+  "hypothesis": "H0: among eligible games with sufficient comparison support, F4 status is unrelated to the home value h beyond what the frozen record-strength baseline e = logistic(b0 + b1*d) and strata (games-played class x d-bin) imply; labels are exchangeable within strata after season-week centring. H1 (nondirectional): mean centred residual of on-support F4 games differs from its stratum-matched null. Estimand limited to on-support F4 games.",
+  "direction": "Nondirectional; no team is selected by the feature",
+  "primary_outcome": [
+    "HOME_WIN",
+    "AWAY_WIN",
+    "TIE"
+  ],
+  "tie_treatment": "Report ties separately; use 0.5 only when calculating win percentage",
+  "comparison_baseline": "Frozen shrunk-record-difference baseline (k = 8; coefficients fitted once on discovery non-F4 games, see reference/baseline_fit) with season-week centring and stratified residual permutation within on-support strata (docs F4_PROTOCOL_REV4.md). The season-week-only permutation is retired.",
+  "minimum_qualifying_n": "Single evaluation when cumulative ON-SUPPORT F4 games >= 188 (A2). Planning power: 64% at a 10-point effect, 79% at 12, 91% at 14; 80%-power MDE about 12 points (simulated; revision 4).",
+  "multiplicity_correction": "BH across the registered grid, max-T for the feature family, Holm across Tier A",
+  "promotion_criteria": "REVISED IN REVISION 4 (needs review): validation is NO_CLEAN_ATTESTATION and the holdout PREVIOUSLY_EXPOSED, so the only confirmatory evidence is the single prospective evaluation at the A2 stopping point; alpha = 0.05, Holm m = 1. Discovery/validation/holdout results are descriptive or exploratory.",
+  "exposure": {
+    "discovery_1999_2018": "DISCOVERY",
+    "validation_2019_2022": "NO_CLEAN_ATTESTATION",
+    "holdout_2023_2025": "PREVIOUSLY_EXPOSED",
+    "prospective_2026_onward": "PROSPECTIVE_AFTER_FREEZE"
+  },
+  "testing_sequence": [
+    "1999-2018 discovery and exploratory development",
+    "2019-2022 validation with exposure status documented",
+    "freeze registry and its hash before any prospective outcome analysis",
+    "2023-2025 previously exposed: descriptive evidence only",
+    "2026 onward: prospective confirmation, one prespecified evaluation after the minimum sample/power requirement is reached"
+  ],
+  "stopping_rule": "A2: one evaluation at the end of the first regular-season week at which the CUMULATIVE count of on-support F4 games (>= 1 F4 and >= 20 non-F4 games in an equal-games-played stratum, pooled over all prospective games to date, recomputed from scratch each week-end) reaches 188. Support list and cumulative sample are computed and SHA-256 hashed before any outcome is joined; the evaluation date and sample are then immutable. No interim outcome analysis; no repeated significance testing. Implementation: scripts/f4_stopping_rule.py.",
+  "data_quality": "High, subject to schedule and pregame-record reconciliation",
+  "data_requirements": "Schedule results only (pregame records); no player or TNF data",
+  "registry_status": "NOT_FROZEN",
+  "baseline_coefficients": "PROVISIONAL (discovery 1999-2018 non-F4 fit, k = 8): see reference/baseline_fit/F4_baseline_k8_discovery_PROVISIONAL.json; become frozen inputs only at the freeze.",
+  "permutation": "B = 100000, recorded seed, scripts/f4_permutation_test.py; two-sided p = (1 + #{|T*| >= |T|}) / (1 + B), alpha = 0.05"
+}

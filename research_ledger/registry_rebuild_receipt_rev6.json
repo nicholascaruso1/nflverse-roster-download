@@ -1,0 +1,270 @@
+{
+  "code_commit_containing_code": "889e3c2c187e2f83ed14812074cd597062ac07cc",
+  "code_sha256": {
+    "scripts/f4_stopping_rule.py": "a487b2518c60e2969a2e5f24c366a839db1e83ea37386703a0541f1be75155b7",
+    "scripts/narrative_batch.py": "c8eb35f3c21ee009174454fabe01799e0c0c30dd3b4b100c09b7945a28dcb2fa",
+    "scripts/narrative_registry.py": "f804339bdf9380cf35583536109c8ca653f8a0adc123983b04b3b2148a08d00a"
+  },
+  "new_registry_sha256": "0017183325012b9237b31b047b81346504dd7e24b316ca4748096c82eadd29c6",
+  "original_partition_manifest": {
+    "introduced_in_commit": "0851b41",
+    "last_row_hash": "6106378c97110fd3a484f464e12a3726656f83971dfc0c2c2a81fa8a1fb92480",
+    "path": "research_ledger/partition_manifest.csv",
+    "rows": 24,
+    "sha256": "c1c9af904de3cd3fa6884e563da77c11ab958ba163d177cd36ae4cd29cb0f401"
+  },
+  "original_registry_sha256": "b714c780891f656121a7945d8d3a14c8d5b84d9bdccaf7a0b42ca581117775aa",
+  "partitions": [
+    {
+      "manifest_row": 1,
+      "original_sha256": "c0e1b9fa7d51c1137c8ecdfe7e83ae186280a414442643110e55b73d57b7ee34",
+      "partition_name": "team_game_features",
+      "reason": "",
+      "rebuilt_bytes": 382980,
+      "rebuilt_sha256": "c0e1b9fa7d51c1137c8ecdfe7e83ae186280a414442643110e55b73d57b7ee34",
+      "split": "discovery",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 2,
+      "original_sha256": "2edc208ea01ad319b65db39b68a2a1350d4539f1171044f4550920fd13d31290",
+      "partition_name": "team_game_features",
+      "reason": "",
+      "rebuilt_bytes": 110464,
+      "rebuilt_sha256": "2edc208ea01ad319b65db39b68a2a1350d4539f1171044f4550920fd13d31290",
+      "split": "validation",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 3,
+      "original_sha256": "de8d713a61da442661b9fa9e23e18e185144946867dd0db4fc72ae39506454f1",
+      "partition_name": "team_game_features",
+      "reason": "",
+      "rebuilt_bytes": 92083,
+      "rebuilt_sha256": "de8d713a61da442661b9fa9e23e18e185144946867dd0db4fc72ae39506454f1",
+      "split": "holdout",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 4,
+      "original_sha256": "07ab117d4680319595a556b0a541640d56613718cfc85432f1e6315c76927952",
+      "partition_name": "team_game_features",
+      "reason": "",
+      "rebuilt_bytes": 40531,
+      "rebuilt_sha256": "07ab117d4680319595a556b0a541640d56613718cfc85432f1e6315c76927952",
+      "split": "prospective",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 5,
+      "original_sha256": "fe053ea802067ab7cd14c23a5ea650897330b4a137846628cbe72249770ede0e",
+      "partition_name": "game_features",
+      "reason": "",
+      "rebuilt_bytes": 80944,
+      "rebuilt_sha256": "fe053ea802067ab7cd14c23a5ea650897330b4a137846628cbe72249770ede0e",
+      "split": "discovery",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 6,
+      "original_sha256": "7bc39134c7ccc7a24b094244f3a35bf9f6a56cca16d96259c8bfdef029f1e9c0",
+      "partition_name": "game_features",
+      "reason": "",
+      "rebuilt_bytes": 23348,
+      "rebuilt_sha256": "7bc39134c7ccc7a24b094244f3a35bf9f6a56cca16d96259c8bfdef029f1e9c0",
+      "split": "validation",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 7,
+      "original_sha256": "f765ec026e6062df54b0489b940488b38b954f96266e515021538d0d5ac8ff23",
+      "partition_name": "game_features",
+      "reason": "",
+      "rebuilt_bytes": 19428,
+      "rebuilt_sha256": "f765ec026e6062df54b0489b940488b38b954f96266e515021538d0d5ac8ff23",
+      "split": "holdout",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 8,
+      "original_sha256": "f178ca8921be4fe4648f28ea960dda56897f6586edf2f2079605c0763572639e",
+      "partition_name": "game_features",
+      "reason": "",
+      "rebuilt_bytes": 9023,
+      "rebuilt_sha256": "f178ca8921be4fe4648f28ea960dda56897f6586edf2f2079605c0763572639e",
+      "split": "prospective",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 9,
+      "original_sha256": "cae2fede88485aaa4639d782eb023606e1b254dfedf2455299934b2f5717bf44",
+      "partition_name": "grid_flags",
+      "reason": "",
+      "rebuilt_bytes": 521634,
+      "rebuilt_sha256": "cae2fede88485aaa4639d782eb023606e1b254dfedf2455299934b2f5717bf44",
+      "split": "discovery",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 10,
+      "original_sha256": "c872de52e2de6e9c4abf5352583127f04245702349f839a610ec70cfb9ef51ab",
+      "partition_name": "grid_flags",
+      "reason": "",
+      "rebuilt_bytes": 291702,
+      "rebuilt_sha256": "c872de52e2de6e9c4abf5352583127f04245702349f839a610ec70cfb9ef51ab",
+      "split": "validation",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 11,
+      "original_sha256": "b10a4ef85e3d295bb2e75fde411dc700245a4828996c2de19ba3f4ace28670af",
+      "partition_name": "grid_flags",
+      "reason": "",
+      "rebuilt_bytes": 275540,
+      "rebuilt_sha256": "b10a4ef85e3d295bb2e75fde411dc700245a4828996c2de19ba3f4ace28670af",
+      "split": "holdout",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 12,
+      "original_sha256": "b4577264bdc97492ddc9166d1b935b27410a8cc834d9305789b649a1782217ee",
+      "partition_name": "grid_flags",
+      "reason": "",
+      "rebuilt_bytes": 227095,
+      "rebuilt_sha256": "b4577264bdc97492ddc9166d1b935b27410a8cc834d9305789b649a1782217ee",
+      "split": "prospective",
+      "status": "IDENTICAL"
+    },
+    {
+      "manifest_row": 13,
+      "original_sha256": "a6c17a9914f9a1b6b496780828c7e3c5df8af281ee54a33bc0ae962fe7e2f619",
+      "partition_name": "roster_candidates_previous_week",
+      "reason": "roster partition not rebuilt: historical roster_weekly files unavailable in rebuild environment",
+      "rebuilt_bytes": null,
+      "rebuilt_sha256": null,
+      "split": "discovery",
+      "status": "NOT_REBUILT"
+    },
+    {
+      "manifest_row": 14,
+      "original_sha256": "32b15b1b5e3b851e45b9f2c14b06f7edbf6ba8d9118ca1e15bdaecf2919f9932",
+      "partition_name": "roster_candidates_previous_week",
+      "reason": "roster partition not rebuilt: historical roster_weekly files unavailable in rebuild environment",
+      "rebuilt_bytes": null,
+      "rebuilt_sha256": null,
+      "split": "validation",
+      "status": "NOT_REBUILT"
+    },
+    {
+      "manifest_row": 15,
+      "original_sha256": "1eb54e108168580b11e64b78faab7b3819fa621a1cd6304d534c46419de04077",
+      "partition_name": "roster_candidates_previous_week",
+      "reason": "roster partition not rebuilt: historical roster_weekly files unavailable in rebuild environment",
+      "rebuilt_bytes": null,
+      "rebuilt_sha256": null,
+      "split": "holdout",
+      "status": "NOT_REBUILT"
+    },
+    {
+      "manifest_row": 16,
+      "original_sha256": "ee58bf930ec84195d1584de9fb034a14a119005ad8dc8c623e3a58db5cab57b9",
+      "partition_name": "roster_candidates_previous_week",
+      "reason": "rebuilt without historical roster inputs; comparison with original not meaningful (identical=False)",
+      "rebuilt_bytes": 23816,
+      "rebuilt_sha256": "7e20e37b04bc2cf262307426a5d3d4a491e800cace440a63c00405b2631fe7d9",
+      "split": "prospective",
+      "status": "NOT_VERIFIABLE"
+    },
+    {
+      "manifest_row": 17,
+      "original_sha256": "c1794134374ca9f3af4dd7d859fdcf7c8d35d69c8fed8835c5ec50f58d8677b4",
+      "partition_name": "roster_candidates_same_week_sensitivity",
+      "reason": "roster partition not rebuilt: historical roster_weekly files unavailable in rebuild environment",
+      "rebuilt_bytes": null,
+      "rebuilt_sha256": null,
+      "split": "discovery",
+      "status": "NOT_REBUILT"
+    },
+    {
+      "manifest_row": 18,
+      "original_sha256": "a2cfb08f0c3642262241262a54e61cf6bf404afda6bbeab3bf32d21646e283c5",
+      "partition_name": "roster_candidates_same_week_sensitivity",
+      "reason": "roster partition not rebuilt: historical roster_weekly files unavailable in rebuild environment",
+      "rebuilt_bytes": null,
+      "rebuilt_sha256": null,
+      "split": "validation",
+      "status": "NOT_REBUILT"
+    },
+    {
+      "manifest_row": 19,
+      "original_sha256": "885aa770d581db838872aa2127669910aeb1e8b83f8294119104f8e5d0c5cb92",
+      "partition_name": "roster_candidates_same_week_sensitivity",
+      "reason": "roster partition not rebuilt: historical roster_weekly files unavailable in rebuild environment",
+      "rebuilt_bytes": null,
+      "rebuilt_sha256": null,
+      "split": "holdout",
+      "status": "NOT_REBUILT"
+    },
+    {
+      "manifest_row": 20,
+      "original_sha256": "cf3c8ad2d022c1d65af3dce81ece8732f3c7b3d82c4e3f4e4a7ddf00ddb454a8",
+      "partition_name": "roster_candidates_same_week_sensitivity",
+      "reason": "rebuilt without historical roster inputs; comparison with original not meaningful (identical=False)",
+      "rebuilt_bytes": 25625,
+      "rebuilt_sha256": "cc89806c84cf9735222719f508146638bfe8d7f80b2c35de3545c6fbd932bf9f",
+      "split": "prospective",
+      "status": "NOT_VERIFIABLE"
+    },
+    {
+      "manifest_row": 21,
+      "original_sha256": "3f60cfa905feb659eeacbe01ccbcad07a7a9692d857418cb5eb802654aac80b6",
+      "partition_name": "roster_coverage",
+      "reason": "rebuilt without historical roster inputs; comparison with original not meaningful (identical=False)",
+      "rebuilt_bytes": 44722,
+      "rebuilt_sha256": "72827ca05bd0c51d42afb945fd2ef86eeddfebbf901b9eba905be9e058ca2f21",
+      "split": "discovery",
+      "status": "NOT_VERIFIABLE"
+    },
+    {
+      "manifest_row": 22,
+      "original_sha256": "72098c3e84c26e2fffa14dc801082c4677d5951e0320fb713f5acf958f6115e5",
+      "partition_name": "roster_coverage",
+      "reason": "rebuilt without historical roster inputs; comparison with original not meaningful (identical=False)",
+      "rebuilt_bytes": 13911,
+      "rebuilt_sha256": "4253b3f747eabfb6ec40526a6671635481878c969738610a9caa9d9e79e40694",
+      "split": "validation",
+      "status": "NOT_VERIFIABLE"
+    },
+    {
+      "manifest_row": 23,
+      "original_sha256": "df71b907aeb27ed847da7007218456bfffcb2a29f4657e6baf0d3385ab6c1df1",
+      "partition_name": "roster_coverage",
+      "reason": "rebuilt without historical roster inputs; comparison with original not meaningful (identical=False)",
+      "rebuilt_bytes": 11381,
+      "rebuilt_sha256": "017cdd0e55f9b367e7f73e827e49f6c2897963669f388ea0653acd75c896a358",
+      "split": "holdout",
+      "status": "NOT_VERIFIABLE"
+    },
+    {
+      "manifest_row": 24,
+      "original_sha256": "5e468f092cdb8c06ada222c734af5f4977751a1b5b889f2e80a266961261a5f1",
+      "partition_name": "roster_coverage",
+      "reason": "rebuilt without historical roster inputs; comparison with original not meaningful (identical=False)",
+      "rebuilt_bytes": 6155,
+      "rebuilt_sha256": "9c197265762e6865bf64138fc1439b405080b27e27fbb309e3659b9adc62ecde",
+      "split": "prospective",
+      "status": "NOT_VERIFIABLE"
+    }
+  ],
+  "rebuild_basis": "Rebuilt from the staging copy of the rev6 code before commit; those code files are byte-identical to commit 889e3c2 (verified against the reviewed manifest).",
+  "rebuild_utc": "2026-11-13T15:49:38+00:00",
+  "receipt_id": "registry_rebuild_receipt_rev6",
+  "registry_status": "NOT_FROZEN",
+  "statement": "Additive receipt. Supplements, does not replace or modify, research_ledger/partition_manifest.csv.",
+  "summary": {
+    "IDENTICAL": 12,
+    "NOT_REBUILT": 6,
+    "NOT_VERIFIABLE": 6,
+    "partitions": 24
+  }
+}

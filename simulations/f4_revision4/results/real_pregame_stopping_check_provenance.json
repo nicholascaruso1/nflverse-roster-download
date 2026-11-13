@@ -1,0 +1,25 @@
+{
+ "run_utc": "2026-11-13T14:55:01.225487+00:00",
+ "partition_file": "game_features__prospective__f178ca8921be4fe4648f28ea960dda56897f6586edf2f2079605c0763572639e.parquet",
+ "partition_sha256_computed": "f178ca8921be4fe4648f28ea960dda56897f6586edf2f2079605c0763572639e",
+ "partition_sha256_manifest": "f178ca8921be4fe4648f28ea960dda56897f6586edf2f2079605c0763572639e",
+ "stopping_rule_sha256": "a487b2518c60e2969a2e5f24c366a839db1e83ea37386703a0541f1be75155b7",
+ "check_script_sha256": "ec157884af9878b344ace27de29874934ca732e71d2fff617a4cf787e40dad80",
+ "eligible_weeks": [
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "n_eligible_games": 120,
+ "n_F4": 33,
+ "first_crossing": null,
+ "all_match": true,
+ "support_hash_current_support_list": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+ "latest_gameday_in_partition": "2026-11-09",
+ "outcome_columns_loaded": false
+}
