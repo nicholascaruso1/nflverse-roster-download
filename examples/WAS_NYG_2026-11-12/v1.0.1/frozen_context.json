@@ -1,0 +1,540 @@
+{
+  "engine": "NFL Script & Narrative Engine",
+  "version": "1.0.1",
+  "frozen_at": "2026-11-12T18:59:06-05:00",
+  "target_date": "2026-11-12",
+  "away": "WAS",
+  "home": "NYG",
+  "week": 10,
+  "season": 2026,
+  "season_source": "nflverse_schedule",
+  "game_id": "2026_10_WAS_NYG",
+  "game_id_source": "nflverse_schedule",
+  "game_type": "REG",
+  "validation_split": "prospective",
+  "outcome_vocabulary": [
+    "HOME_WIN",
+    "AWAY_WIN",
+    "TIE"
+  ],
+  "historical_cutoff_exclusive": "2026-11-12",
+  "data_cutoff": {
+    "rule": "gameday < target_date (date-level; same-day earlier kickoffs excluded)",
+    "target_date_exclusive": "2026-11-12",
+    "last_game_included": "2026-11-09"
+  },
+  "data_scope": {
+    "completed_regular_season_games": 7103,
+    "first_game": "1999-09-12",
+    "last_game": "2026-11-09",
+    "identity_coverage_gaps": 0
+  },
+  "tnf_table": {
+    "path": "/home/claude/nflverse-roster-download/reference/tnf_broadcast_games.csv",
+    "rows": 0,
+    "verified_rows": 0,
+    "verified_game_ids": 0,
+    "status": "loaded",
+    "verified_ids_not_in_schedule": 0
+  },
+  "governance": [
+    "Target-date and later results are excluded.",
+    "No odds, market prices, or market-implied probabilities are used (market columns are never loaded).",
+    "All narrative clusters are descriptive and non-directional.",
+    "Cipher variants are dependent, not independent evidence (shared family_id).",
+    "Historical team identity is primary; current identity is a separate comparison field.",
+    "Branded TNF is counted only from the verified TNF table; Thursday/kickoff proxies are not TNF.",
+    "Ties are a separate outcome (HOME_WIN/AWAY_WIN/TIE); win_pct = (W + 0.5*T)/G.",
+    "Historical frequencies are descriptive and in-sample."
+  ],
+  "season_records_before_game": {
+    "WAS": {
+      "wins": 2,
+      "losses": 5,
+      "ties": 1,
+      "games": 8,
+      "record": "2-5-1",
+      "win_pct": 0.3125
+    },
+    "NYG": {
+      "wins": 5,
+      "losses": 2,
+      "ties": 1,
+      "games": 8,
+      "record": "5-2-1",
+      "win_pct": 0.6875
+    }
+  },
+  "head_to_head": {
+    "WAS": {
+      "wins": 21,
+      "losses": 32,
+      "ties": 2,
+      "games": 55,
+      "record": "21-32-2",
+      "win_pct": 0.4
+    },
+    "NYG": {
+      "wins": 32,
+      "losses": 21,
+      "ties": 2,
+      "games": 55,
+      "record": "32-21-2",
+      "win_pct": 0.6
+    },
+    "games": 55
+  },
+  "previous_meeting": {
+    "date": "2026-10-11",
+    "away": "NYG",
+    "away_score": 27,
+    "home": "WAS",
+    "home_score": 27,
+    "outcome": "TIE"
+  },
+  "team_ciphers": {
+    "WAS": {
+      "franchise_id": "WAS",
+      "season": 2026,
+      "historical": {
+        "city": "Washington",
+        "nickname": "Commanders",
+        "display_name": "Washington Commanders",
+        "code": "WAS",
+        "ciphers": {
+          "city": {
+            "ordinal": 130,
+            "ordinal_root": 4,
+            "reverse_ordinal": 140,
+            "reverse_root": 5,
+            "pythagorean": 49,
+            "pythagorean_root": 4,
+            "letters": 10
+          },
+          "nickname": {
+            "ordinal": 105,
+            "ordinal_root": 6,
+            "reverse_ordinal": 165,
+            "reverse_root": 3,
+            "pythagorean": 42,
+            "pythagorean_root": 6,
+            "letters": 10
+          },
+          "full_identity": {
+            "ordinal": 235,
+            "ordinal_root": 1,
+            "reverse_ordinal": 305,
+            "reverse_root": 8,
+            "pythagorean": 91,
+            "pythagorean_root": 1,
+            "letters": 20
+          }
+        }
+      },
+      "current": {
+        "city": "Washington",
+        "nickname": "Commanders",
+        "display_name": "Washington Commanders",
+        "code": "WAS",
+        "ciphers": {
+          "city": {
+            "ordinal": 130,
+            "ordinal_root": 4,
+            "reverse_ordinal": 140,
+            "reverse_root": 5,
+            "pythagorean": 49,
+            "pythagorean_root": 4,
+            "letters": 10
+          },
+          "nickname": {
+            "ordinal": 105,
+            "ordinal_root": 6,
+            "reverse_ordinal": 165,
+            "reverse_root": 3,
+            "pythagorean": 42,
+            "pythagorean_root": 6,
+            "letters": 10
+          },
+          "full_identity": {
+            "ordinal": 235,
+            "ordinal_root": 1,
+            "reverse_ordinal": 305,
+            "reverse_root": 8,
+            "pythagorean": 91,
+            "pythagorean_root": 1,
+            "letters": 20
+          }
+        }
+      },
+      "current_equals_historical": true
+    },
+    "NYG": {
+      "franchise_id": "NYG",
+      "season": 2026,
+      "historical": {
+        "city": "New York",
+        "nickname": "Giants",
+        "display_name": "New York Giants",
+        "code": "NYG",
+        "ciphers": {
+          "city": {
+            "ordinal": 111,
+            "ordinal_root": 3,
+            "reverse_ordinal": 78,
+            "reverse_root": 6,
+            "pythagorean": 39,
+            "pythagorean_root": 3,
+            "letters": 7
+          },
+          "nickname": {
+            "ordinal": 70,
+            "ordinal_root": 7,
+            "reverse_ordinal": 92,
+            "reverse_root": 2,
+            "pythagorean": 25,
+            "pythagorean_root": 7,
+            "letters": 6
+          },
+          "full_identity": {
+            "ordinal": 181,
+            "ordinal_root": 1,
+            "reverse_ordinal": 170,
+            "reverse_root": 8,
+            "pythagorean": 64,
+            "pythagorean_root": 1,
+            "letters": 13
+          }
+        }
+      },
+      "current": {
+        "city": "New York",
+        "nickname": "Giants",
+        "display_name": "New York Giants",
+        "code": "NYG",
+        "ciphers": {
+          "city": {
+            "ordinal": 111,
+            "ordinal_root": 3,
+            "reverse_ordinal": 78,
+            "reverse_root": 6,
+            "pythagorean": 39,
+            "pythagorean_root": 3,
+            "letters": 7
+          },
+          "nickname": {
+            "ordinal": 70,
+            "ordinal_root": 7,
+            "reverse_ordinal": 92,
+            "reverse_root": 2,
+            "pythagorean": 25,
+            "pythagorean_root": 7,
+            "letters": 6
+          },
+          "full_identity": {
+            "ordinal": 181,
+            "ordinal_root": 1,
+            "reverse_ordinal": 170,
+            "reverse_root": 8,
+            "pythagorean": 64,
+            "pythagorean_root": 1,
+            "letters": 13
+          }
+        }
+      },
+      "current_equals_historical": true
+    }
+  },
+  "combined_nickname_ciphers": {
+    "ordinal": 175,
+    "ordinal_root": 4,
+    "reverse_ordinal": 257,
+    "reverse_root": 5,
+    "pythagorean": 67,
+    "pythagorean_root": 4,
+    "letters": 16
+  },
+  "scoreline_base_rates": {
+    "games": 7103,
+    "either_team_27": 799,
+    "either_team_27_rate": 0.11248768126143883,
+    "ties": 16,
+    "tie_rate": 0.0022525693368999015,
+    "exact_27_27": 3,
+    "exact_27_27_rate": 0.00042235675066873153,
+    "total_54": 145,
+    "total_54_rate": 0.020413909615655357
+  },
+  "roster_unmapped_team_codes": [],
+  "roster_snapshot_week": 10,
+  "roster_snapshot_caveat": "Latest weekly roster at or before target week; not official game-day inactives; snapshot freeze time unverified.",
+  "player_name_matches": [
+    {
+      "player": "Jon Runyan",
+      "team": "NYG",
+      "name_basis": "historical",
+      "opponent_nickname": "COMMANDERS",
+      "exact_systems": [
+        "pythagorean"
+      ],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Andrew Thomas",
+      "team": "NYG",
+      "name_basis": "historical",
+      "opponent_nickname": "COMMANDERS",
+      "exact_systems": [],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Jason Pinnock",
+      "team": "NYG",
+      "name_basis": "historical",
+      "opponent_nickname": "COMMANDERS",
+      "exact_systems": [],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Jevon Holland",
+      "team": "NYG",
+      "name_basis": "historical",
+      "opponent_nickname": "COMMANDERS",
+      "exact_systems": [],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Josh Sills",
+      "team": "NYG",
+      "name_basis": "historical",
+      "opponent_nickname": "COMMANDERS",
+      "exact_systems": [],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Basil Okoye",
+      "team": "NYG",
+      "name_basis": "historical",
+      "opponent_nickname": "COMMANDERS",
+      "exact_systems": [
+        "pythagorean"
+      ],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Malik Nabers",
+      "team": "NYG",
+      "name_basis": "historical",
+      "opponent_nickname": "COMMANDERS",
+      "exact_systems": [
+        "ordinal",
+        "pythagorean"
+      ],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Bryan Hudson",
+      "team": "NYG",
+      "name_basis": "historical",
+      "opponent_nickname": "COMMANDERS",
+      "exact_systems": [],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Andru Phillips",
+      "team": "NYG",
+      "name_basis": "historical",
+      "opponent_nickname": "COMMANDERS",
+      "exact_systems": [],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Abdul Carter",
+      "team": "NYG",
+      "name_basis": "historical",
+      "opponent_nickname": "COMMANDERS",
+      "exact_systems": [
+        "ordinal",
+        "pythagorean"
+      ],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Fabian Moreau",
+      "team": "WAS",
+      "name_basis": "historical",
+      "opponent_nickname": "GIANTS",
+      "exact_systems": [],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Deatrich Wise",
+      "team": "WAS",
+      "name_basis": "historical",
+      "opponent_nickname": "GIANTS",
+      "exact_systems": [],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Charles Omenihu",
+      "team": "WAS",
+      "name_basis": "historical",
+      "opponent_nickname": "GIANTS",
+      "exact_systems": [],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Amik Robertson",
+      "team": "WAS",
+      "name_basis": "historical",
+      "opponent_nickname": "GIANTS",
+      "exact_systems": [],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    },
+    {
+      "player": "Sonny Styles",
+      "team": "WAS",
+      "name_basis": "historical",
+      "opponent_nickname": "GIANTS",
+      "exact_systems": [],
+      "root_systems": [
+        "ordinal_root",
+        "reverse_root",
+        "pythagorean_root"
+      ]
+    }
+  ],
+  "external_tnf_claims": {
+    "WAS": "3-9",
+    "NYG": "4-8"
+  },
+  "provenance": {
+    "inputs": [
+      {
+        "role": "schedule",
+        "path": "/home/claude/audit_data/games.csv",
+        "basename": "games.csv",
+        "sha256": "5ae004ff6d26b08109cbd7424127b0eaa89f59a4bed445229e8683e98d22c8d0",
+        "bytes": 2189959,
+        "file_mtime_utc": "2026-11-12T23:46:15+00:00",
+        "source_url": "https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv",
+        "source_url_basis": "default_declared_unverified",
+        "retrieved_date": "2026-11-12",
+        "schema_columns": 46,
+        "schema_sha256": "4dbd75f9f0db72cede6b8a938a28724cc622f164a5acf3d67e1c4e1ace142d78",
+        "coverage": {
+          "rows_loaded": 7548,
+          "season_min": 1999,
+          "season_max": 2026,
+          "first_gameday": "1999-09-12",
+          "last_gameday": "2027-01-10"
+        }
+      },
+      {
+        "role": "tnf_broadcast_table",
+        "path": "/home/claude/nflverse-roster-download/reference/tnf_broadcast_games.csv",
+        "basename": "tnf_broadcast_games.csv",
+        "sha256": "695bfad02a7ca64b07198add79bf869372b71ae76d75fb6b44c2107a981714a5",
+        "bytes": 104,
+        "file_mtime_utc": "2026-11-12T23:54:37+00:00",
+        "source_url": null,
+        "source_url_basis": "none",
+        "retrieved_date": "unknown (not supplied; see file_mtime_utc)",
+        "schema_columns": 10,
+        "schema_sha256": "1a43a61e48e2b02c94ca65c88f17aa2cd97017dc62f981ee5847f7ea99322e60"
+      },
+      {
+        "role": "team_identity_eras",
+        "path": "/home/claude/nflverse-roster-download/reference/team_identity_eras.csv",
+        "basename": "team_identity_eras.csv",
+        "sha256": "c12e4d61e13000fdf677c6e358be7ffd3c90cb3a0ff2db8846bbf8620c12b5e9",
+        "bytes": 2081,
+        "file_mtime_utc": "2026-11-12T23:54:37+00:00",
+        "source_url": null,
+        "source_url_basis": "none",
+        "retrieved_date": "unknown (not supplied; see file_mtime_utc)",
+        "schema_columns": 7,
+        "schema_sha256": "5175ff9aaf020b611d72c24fffa50b5c33e67694cf7440fc3845919823307c93"
+      },
+      {
+        "role": "weekly_roster",
+        "path": "/home/claude/audit_data/rosters/roster_weekly_2026.csv",
+        "basename": "roster_weekly_2026.csv",
+        "sha256": "179b3d008cc895441b7bebbb56957226e5e4a9dc50235d13c824a39f20c0f571",
+        "bytes": 8022368,
+        "file_mtime_utc": "2026-11-12T23:46:30+00:00",
+        "source_url": "https://github.com/nflverse/nflverse-data/releases/download/weekly_rosters/",
+        "source_url_basis": "default_declared_unverified",
+        "retrieved_date": "2026-11-12",
+        "schema_columns": 36,
+        "schema_sha256": "db6795da5636dd14024f98083df52b3a05d3b6d847ffc3d803d44e29d1fb5d8b"
+      }
+    ],
+    "code": {
+      "engine_version": "1.0.1",
+      "git_commit": "cbafc6af5a19b07fd0efe374fe79d5c10531452b",
+      "working_tree_dirty": false,
+      "script_sha256": "d66d248c2c833f0db20f958b8f10fbe34f0423ac388ef6dcfe89e1541d10325e",
+      "python": "3.13.18",
+      "pandas": "3.0.5"
+    },
+    "identity_table_sha256": "c12e4d61e13000fdf677c6e358be7ffd3c90cb3a0ff2db8846bbf8620c12b5e9"
+  },
+  "run_id": "9be52cd17abe4d68881385c735a0aea9",
+  "observed_at_utc": "2026-11-12T23:59:07+00:00"
+}
