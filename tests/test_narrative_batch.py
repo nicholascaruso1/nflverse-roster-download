@@ -353,7 +353,7 @@ class RegistryTests(unittest.TestCase):
                     "multiplicity_correction", "promotion_criteria", "exposure", "stopping_rule", "testing_sequence"):
             self.assertIn(key, spec)
         self.assertEqual(spec["primary_outcome"], ["HOME_WIN", "AWAY_WIN", "TIE"])
-        self.assertIn("PENDING_PRE_FREEZE", spec["stopping_rule"])
+        self.assertTrue(spec["stopping_rule"].startswith("A2:") and "188" in spec["stopping_rule"]); self.assertEqual(spec["registry_status"], "NOT_FROZEN")
 
     def test_approved_statuses_and_exposure_labels(self):
         f = reg.build_registry().set_index("feature_id")

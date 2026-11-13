@@ -1,0 +1,50 @@
+[
+  {
+    "label": "STRESS_equalG_bonus_large",
+    "delta": 0.0,
+    "R": 1000,
+    "B": 299,
+    "mean_n_f4": 240.553,
+    "mean_n_f4_on_support": 204.088,
+    "M0_seasonweek_perm": {
+      "reject_rate_alpha05": 0.184,
+      "mc_se": 0.012253326079069307
+    },
+    "M1_stratified_perm": {
+      "reject_rate_alpha05": 0.041,
+      "mc_se": 0.006270486424512854
+    },
+    "M2_model_z": {
+      "reject_rate_alpha05": 0.473,
+      "mc_se": 0.01578831846651188
+    },
+    "frozen_coefs": [
+      1.0385036778518228,
+      2.5070852405209503
+    ]
+  },
+  {
+    "label": "STRESS_equalG_bonus_large",
+    "delta": 0.1,
+    "R": 1000,
+    "B": 299,
+    "mean_n_f4": 253.089,
+    "mean_n_f4_on_support": 218.103,
+    "M0_seasonweek_perm": {
+      "reject_rate_alpha05": 0.995,
+      "mc_se": 0.002230470802319547
+    },
+    "M1_stratified_perm": {
+      "reject_rate_alpha05": 0.866,
+      "mc_se": 0.010772372069326236
+    },
+    "M2_model_z": {
+      "reject_rate_alpha05": 1.0,
+      "mc_se": 0.0
+    },
+    "frozen_coefs": [
+      1.0385036778518228,
+      2.5070852405209503
+    ]
+  }
+]

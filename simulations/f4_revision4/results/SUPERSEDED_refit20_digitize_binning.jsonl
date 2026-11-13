@@ -1,0 +1,6 @@
+{"null": "lat060", "n_games": 5116, "mean_F4": 799.0, "R": 4, "B": 29, "refit_type1": 0.0, "mc_se": 0.0, "secs": 0}
+{"null": "lat060", "n_games": 5116, "mean_F4": 818.628, "R": 1000, "B": 199, "refit_type1": 0.041, "mc_se": 0.006270486424512854, "secs": 198}
+{"null": "gslope", "n_games": 5116, "mean_F4": 812.67, "R": 1000, "B": 199, "refit_type1": 0.035, "mc_se": 0.005811626278418116, "secs": 195}
+{"null": "eqbonus_big", "n_games": 5116, "mean_F4": 960.091, "R": 1000, "B": 199, "refit_type1": 0.044, "mc_se": 0.006485676526007136, "secs": 179}
+{"null": "combo", "n_games": 5116, "mean_F4": 812.99, "R": 1000, "B": 199, "refit_type1": 0.044, "mc_se": 0.006485676526007136, "secs": 184}
+{"null": "weekshock", "n_games": 5116, "mean_F4": 804.491, "R": 1000, "B": 199, "refit_type1": 0.046, "mc_se": 0.006624499981130651, "secs": 185}

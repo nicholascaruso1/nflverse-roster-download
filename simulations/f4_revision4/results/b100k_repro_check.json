@@ -1,0 +1,20 @@
+{
+ "identical_p_same_seed": true,
+ "identical_full_T*_vector_same_seed": true,
+ "p_seed_424242": 0.08358916410835891,
+ "p_seed_424243": 0.08344916550834491,
+ "p_difference_within_MC": true,
+ "t_obs_unchanged_by_permutation_runs": true,
+ "support_unchanged": true,
+ "seconds_per_100k": 1.39,
+ "tstar_quantiles_1_25_50_75_99": [
+  -13.3597,
+  -3.8218,
+  0.0417,
+  3.8437,
+  13.1346
+ ],
+ "tstar_sd": 5.6806515856361415,
+ "exact_sd": 5.692624957145751,
+ "peak_rss_MB": 141
+}

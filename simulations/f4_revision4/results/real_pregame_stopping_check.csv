@@ -1,0 +1,9 @@
+week,games_to_date,eligible_games_wk,F4_to_date,on_support_F4_cum,supported_strata,brute_on_support,brute_strata,match,status
+2,16,16,10,0,0,0,0,True,below 188
+3,32,16,19,0,0,0,0,True,below 188
+4,48,16,24,0,0,0,0,True,below 188
+5,63,15,27,0,0,0,0,True,below 188
+6,77,14,31,0,0,0,0,True,below 188
+7,91,14,33,0,0,0,0,True,below 188
+8,105,14,33,0,0,0,0,True,below 188
+9,120,15,33,0,0,0,0,True,below 188

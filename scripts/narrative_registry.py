@@ -21,6 +21,11 @@ REGISTRY_META = REPO_ROOT / "reference" / "feature_registry_v1.1.meta.json"
 EXPOSURE_CSV = REPO_ROOT / "reference" / "exposure_attestation_v1.1.csv"
 F4_SPEC = REPO_ROOT / "reference" / "confirmatory_specs" / "F4_MIRRORED_CURRENT_RECORDS.json"
 HYPOTHESES_LEDGER = REPO_ROOT / "research_ledger" / "hypotheses_ledger.csv"
+UNTESTABLE_CSV = REPO_ROOT / "reference" / "untestable_features_v1.1_rev4.csv"   # revision 4: 98 STRUCTURAL / 33 EMPIRICAL_ZERO (mathematical bounds)
+TESTABLE = "TESTABLE_SUBJECT_TO_SAMPLE_MINIMUM"
+STRUCTURAL = "STRUCTURALLY_UNTESTABLE"
+EMPIRICAL_ZERO = "EMPIRICAL_ZERO_UNTESTABLE_IN_REG_SAMPLE"
+NOT_APPLICABLE = "NOT_APPLICABLE"
 
 STRING_KINDS = ("city", "nickname", "full_identity")
 BASES = ("historical", "current")
@@ -38,7 +43,7 @@ EXPOSED_QUANTITIES = {"days_remaining", "days_since_last_win_rs", "days_since_la
 REGISTRY_COLUMNS = ["feature_id", "family_id", "tier", "status", "scope", "unit", "string_source", "name_basis",
                     "cipher_field", "match_type", "quantity", "definition", "hypothesis", "primary_outcome",
                     "requires", "exposure_discovery", "exposure_validation", "exposure_holdout",
-                    "exposure_prospective", "data_quality", "notes"]
+                    "exposure_prospective", "data_quality", "notes", "testability"]
 
 AWAITING = "NO_CLEAN_ATTESTATION"
 PREV = "PREVIOUSLY_EXPOSED"
@@ -48,7 +53,7 @@ DISCOVERY = "DISCOVERY"
 
 
 def _row(**kw):
-    base = {c: "" for c in REGISTRY_COLUMNS}
+    base = {c: "" for c in REGISTRY_COLUMNS}; base["testability"] = NOT_APPLICABLE
     base.update(kw)
     return base
 
@@ -98,7 +103,7 @@ def named_features():
              unit="game", string_source="n/a", name_basis="n/a", cipher_field="n/a", match_type="record",
              quantity="current_season_records",
              definition="Before kickoff the two teams have mirrored regular-season records: away wins = home losses, away losses = home wins, ties equal; both teams must have played at least one game.",
-             hypothesis="Mirrored-record matchups have a HOME_WIN/AWAY_WIN/TIE distribution different from the season-week permutation baseline after prior-record adjustment. Nondirectional.",
+             hypothesis="H0: among eligible games with sufficient comparison support, F4 status is unrelated to the home value (win 1, tie 0.5, loss 0) beyond the frozen record-strength baseline and strata, with labels exchangeable within strata after season-week centring; H1 nondirectional. Stratified residual permutation (B = 100,000), single evaluation under stopping rule A2; estimand limited to on-support F4 games.",
              primary_outcome="HOME_WIN|AWAY_WIN|TIE", data_quality="official_schedule_result",
              notes="Only approved Tier A feature. Approved for preregistration, not evidence of an effect. See confirmatory_specs/F4_MIRRORED_CURRENT_RECORDS.json.",
              **exp_1_5),
@@ -163,8 +168,19 @@ def tnf_blocked_features():
     return blocked
 
 
+def untestable_classes():
+    """feature_id -> STRUCTURALLY_UNTESTABLE | EMPIRICAL_ZERO_UNTESTABLE_IN_REG_SAMPLE from the reviewed revision 4 classification file."""
+    f = pd.read_csv(UNTESTABLE_CSV)
+    return {r.feature_id: (STRUCTURAL if r.zero_class_rev4 == "STRUCTURAL" else EMPIRICAL_ZERO) for r in f.itertuples()}
+
+
+def untestable_csv_sha256():
+    return hashlib.sha256(UNTESTABLE_CSV.read_bytes()).hexdigest()
+
+
 def grid_features():
     rows = []
+    cls = untestable_classes()
     for kind in STRING_KINDS:
         for basis in BASES:
             for field in CIPHER_FIELDS:
@@ -183,7 +199,8 @@ def grid_features():
                         exposure_holdout=PREV if exposed else NONE_EST, exposure_prospective=PROSPECTIVE,
                         data_quality="computed",
                         notes="Raised in earlier work; conservative PREVIOUSLY_EXPOSED label." if exposed else
-                              "Unattested: no outcome exposure established in the project record."))
+                              "Unattested: no outcome exposure established in the project record.",
+                        testability=cls.get(f"B__{kind}__{basis}__{field}__{qty}", TESTABLE)))
     return rows
 
 
@@ -211,11 +228,15 @@ def registry_meta(frame):
             "descriptive_only_features": sorted(frame[frame.status.str.startswith("DESCRIPTIVE_ONLY")].feature_id),
             "blocked_tnf_features": sorted(frame[frame.status == "BLOCKED_TNF"].feature_id),
             "exploratory_grid_size": int(len(active_grid)),
+            "testability_counts": {k: int(v) for k, v in grid.testability.value_counts().sort_index().items()},
+            "untestable_classification_file": "reference/untestable_features_v1.1_rev4.csv", "untestable_classification_sha256": untestable_csv_sha256(),
+            "f4_stopping_rule": "A2: single evaluation when cumulative on-support F4 games >= 188 (see confirmatory_specs)",
             "exploratory_family_count": int(active_grid.family_id.nunique()),
             "grid_dimensions": {"string_kinds": list(STRING_KINDS), "name_bases": list(BASES),
                                 "cipher_fields": list(CIPHER_FIELDS), "quantities": list(QUANTITIES)},
-            "multiplicity_denominator_note": "Denominator for any exploratory test is exploratory_grid_size (all features), "
-                                             "never the number of features someone noticed."}
+            "multiplicity_denominator_note": "Nominal grid size is exploratory_grid_size (504). The denominator for any exploratory test is m, the number of "
+                                             "equivalence classes with n_one >= 30 in the evaluated sample (Tier B definitions, revision 4); STRUCTURALLY_UNTESTABLE and "
+                                             "EMPIRICAL_ZERO_UNTESTABLE_IN_REG_SAMPLE features keep their ids and are excluded from tests. Never the number of features someone noticed."}
 
 
 def f4_spec():
@@ -227,14 +248,14 @@ def f4_spec():
         "denominator": "All eligible completed regular-season games with valid pregame records",
         "expected_prevalence": {"discovery_1999_2018": "15.0%", "validation_2019_2022": "14.6%", "holdout_2023_2025": "14.3%",
                                 "basis": "outcome-blind counts from Revision 1 of the v1.1 plan"},
-        "hypothesis": "Mirrored-record matchups have an outcome distribution different from the prespecified season-week permutation baseline after prior-record adjustment.",
+        "hypothesis": "H0: among eligible games with sufficient comparison support, F4 status is unrelated to the home value h beyond what the frozen record-strength baseline e = logistic(b0 + b1*d) and strata (games-played class x d-bin) imply; labels are exchangeable within strata after season-week centring. H1 (nondirectional): mean centred residual of on-support F4 games differs from its stratum-matched null. Estimand limited to on-support F4 games.",
         "direction": "Nondirectional; no team is selected by the feature",
         "primary_outcome": ["HOME_WIN", "AWAY_WIN", "TIE"],
         "tie_treatment": "Report ties separately; use 0.5 only when calculating win percentage",
-        "comparison_baseline": "Season-week permutation null plus prior-record-strength adjustment",
-        "minimum_qualifying_n": "No universal cutoff; actual power and MDE must be calculated and reported before testing. Expected validation count about 154.",
+        "comparison_baseline": "Frozen shrunk-record-difference baseline (k = 8; coefficients fitted once on discovery non-F4 games, see reference/baseline_fit) with season-week centring and stratified residual permutation within on-support strata (docs F4_PROTOCOL_REV4.md). The season-week-only permutation is retired.",
+        "minimum_qualifying_n": "Single evaluation when cumulative ON-SUPPORT F4 games >= 188 (A2). Planning power: 64% at a 10-point effect, 79% at 12, 91% at 14; 80%-power MDE about 12 points (simulated; revision 4).",
         "multiplicity_correction": "BH across the registered grid, max-T for the feature family, Holm across Tier A",
-        "promotion_criteria": "Must pass the preregistered validation test after multiplicity correction and then succeed in one clean prospective confirmation.",
+        "promotion_criteria": "REVISED IN REVISION 4 (needs review): validation is NO_CLEAN_ATTESTATION and the holdout PREVIOUSLY_EXPOSED, so the only confirmatory evidence is the single prospective evaluation at the A2 stopping point; alpha = 0.05, Holm m = 1. Discovery/validation/holdout results are descriptive or exploratory.",
         "exposure": {"discovery_1999_2018": DISCOVERY, "validation_2019_2022": AWAITING,
                      "holdout_2023_2025": PREV, "prospective_2026_onward": PROSPECTIVE},
         "testing_sequence": ["1999-2018 discovery and exploratory development",
@@ -242,9 +263,12 @@ def f4_spec():
                              "freeze registry and its hash before any prospective outcome analysis",
                              "2023-2025 previously exposed: descriptive evidence only",
                              "2026 onward: prospective confirmation, one prespecified evaluation after the minimum sample/power requirement is reached"],
-        "stopping_rule": "PENDING_PRE_FREEZE: minimum sample, evaluation timing and stopping rule must be written here and frozen before any prospective outcome analysis. No repeated significance peeking.",
+        "stopping_rule": "A2: one evaluation at the end of the first regular-season week at which the CUMULATIVE count of on-support F4 games (>= 1 F4 and >= 20 non-F4 games in an equal-games-played stratum, pooled over all prospective games to date, recomputed from scratch each week-end) reaches 188. Support list and cumulative sample are computed and SHA-256 hashed before any outcome is joined; the evaluation date and sample are then immutable. No interim outcome analysis; no repeated significance testing. Implementation: scripts/f4_stopping_rule.py.",
         "data_quality": "High, subject to schedule and pregame-record reconciliation",
         "data_requirements": "Schedule results only (pregame records); no player or TNF data",
+        "registry_status": "NOT_FROZEN",
+        "baseline_coefficients": "PROVISIONAL (discovery 1999-2018 non-F4 fit, k = 8): see reference/baseline_fit/F4_baseline_k8_discovery_PROVISIONAL.json; become frozen inputs only at the freeze.",
+        "permutation": "B = 100000, recorded seed, scripts/f4_permutation_test.py; two-sided p = (1 + #{|T*| >= |T|}) / (1 + B), alpha = 0.05",
     }
 
 
@@ -301,6 +325,29 @@ def register_hypotheses(frame, ledger_path=HYPOTHESES_LEDGER, code_commit="unkno
     return {"appended": len(rows), "skipped_existing": len(skipped), "total_rows": total, "chain_head": head}
 
 
+def revise_hypotheses(frame, ledger_path=HYPOTHESES_LEDGER, code_commit="unknown", previous_registry_sha=None, approval_ref="revision 4 (pending commit authorization)"):
+    """Append REGISTRY_REVISED events (append-only; existing rows are never changed) for registered items whose definition changed:
+    F4 (corrected hypothesis, stopping rule A2) and the Tier B grid (testability classification). Idempotent per registry hash."""
+    sha = registry_sha256(frame); meta = registry_meta(frame); now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    existing = {(r["feature_id"], r["registry_sha256"]) for r in hashchain.read_rows(ledger_path) if r["event_type"] == "REGISTRY_REVISED"}
+    f4 = frame[frame.feature_id == "F4_MIRRORED_CURRENT_RECORDS"].iloc[0]; c = meta["testability_counts"]; rows = []
+    prev = f" Supersedes registry {previous_registry_sha}." if previous_registry_sha else ""
+    if ("F4_MIRRORED_CURRENT_RECORDS", sha) not in existing:
+        rows.append({"event_ts_utc": now, "event_type": "REGISTRY_REVISED", "feature_id": "F4_MIRRORED_CURRENT_RECORDS", "tier": "A", "status": f4.status,
+                     "exposure_discovery": f4.exposure_discovery, "exposure_validation": f4.exposure_validation, "exposure_holdout": f4.exposure_holdout, "exposure_prospective": f4.exposure_prospective,
+                     "statement": f4.definition + " | " + f4.hypothesis + " | Stopping rule A2 (188 cumulative on-support F4 games, single evaluation). Registry remains NOT_FROZEN." + prev,
+                     "registry_sha256": sha, "code_commit": code_commit, "approval_ref": approval_ref, "result": "NOT_TESTED"})
+    if ("TIER_B_EXPLORATORY_GRID", sha) not in existing:
+        rows.append({"event_ts_utc": now, "event_type": "REGISTRY_REVISED", "feature_id": "TIER_B_EXPLORATORY_GRID", "tier": "B", "status": "EXPLORATORY",
+                     "exposure_discovery": DISCOVERY, "exposure_validation": NONE_EST, "exposure_holdout": NONE_EST, "exposure_prospective": PROSPECTIVE,
+                     "statement": f"Exploratory grid of {meta['exploratory_grid_size']} features in {meta['exploratory_family_count']} families (ids retained); testability classification added: "
+                                  f"{c.get(STRUCTURAL, 0)} {STRUCTURAL}, {c.get(EMPIRICAL_ZERO, 0)} {EMPIRICAL_ZERO}, {c.get(TESTABLE, 0)} {TESTABLE}. Classification file sha256 {meta['untestable_classification_sha256']}. "
+                                  f"Partition manifest rows are unchanged (partitions do not depend on the registry)." + prev,
+                     "registry_sha256": sha, "code_commit": code_commit, "approval_ref": approval_ref, "result": "NOT_TESTED"})
+    total, head = hashchain.append(ledger_path, LEDGER_FIELDS, "hypothesis_row", rows) if rows else (len(hashchain.read_rows(ledger_path)), None)
+    return {"appended": len(rows), "total_rows": total, "chain_head": head}
+
+
 def write_registry_files():
     frame = build_registry()
     REGISTRY_CSV.parent.mkdir(parents=True, exist_ok=True)
@@ -315,6 +362,8 @@ def write_registry_files():
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--register", action="store_true", help="also append REGISTERED events to the hypotheses ledger")
+    p.add_argument("--revise", action="store_true", help="append REGISTRY_REVISED events (F4 and Tier B grid) for the regenerated registry")
+    p.add_argument("--previous-registry-sha", default=None)
     p.add_argument("--code-commit", default="unknown")
     p.add_argument("--verify", action="store_true", help="verify registry files and hypotheses ledger")
     a = p.parse_args()
@@ -331,6 +380,8 @@ def main():
     print("registry rows:", len(frame), "sha256:", registry_sha256(frame))
     if a.register:
         print(register_hypotheses(frame, code_commit=a.code_commit))
+    if a.revise:
+        print(revise_hypotheses(frame, code_commit=a.code_commit, previous_registry_sha=a.previous_registry_sha))
 
 if __name__ == "__main__":
     main()

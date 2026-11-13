@@ -23,6 +23,7 @@
   ],
   "exploratory_family_count": 84,
   "exploratory_grid_size": 504,
+  "f4_stopping_rule": "A2: single evaluation when cumulative on-support F4 games >= 188 (see confirmatory_specs)",
   "freeze_status": "NOT_FROZEN (v1.1 build; the freeze, with this hash, must be declared before any outcome-joined analysis or prospective evaluation)",
   "grid_dimensions": {
     "cipher_fields": [
@@ -59,8 +60,16 @@
       "full_identity"
     ]
   },
-  "multiplicity_denominator_note": "Denominator for any exploratory test is exploratory_grid_size (all features), never the number of features someone noticed.",
+  "multiplicity_denominator_note": "Nominal grid size is exploratory_grid_size (504). The denominator for any exploratory test is m, the number of equivalence classes with n_one >= 30 in the evaluated sample (Tier B definitions, revision 4); STRUCTURALLY_UNTESTABLE and EMPIRICAL_ZERO_UNTESTABLE_IN_REG_SAMPLE features keep their ids and are excluded from tests. Never the number of features someone noticed.",
   "registry_version": "1.1.0",
   "rows": 520,
-  "sha256": "b714c780891f656121a7945d8d3a14c8d5b84d9bdccaf7a0b42ca581117775aa"
+  "sha256": "0017183325012b9237b31b047b81346504dd7e24b316ca4748096c82eadd29c6",
+  "testability_counts": {
+    "EMPIRICAL_ZERO_UNTESTABLE_IN_REG_SAMPLE": 33,
+    "NOT_APPLICABLE": 3,
+    "STRUCTURALLY_UNTESTABLE": 98,
+    "TESTABLE_SUBJECT_TO_SAMPLE_MINIMUM": 373
+  },
+  "untestable_classification_file": "reference/untestable_features_v1.1_rev4.csv",
+  "untestable_classification_sha256": "3a8eb183d27d0f4885d5227ac56605918f5f203cafe5f5e8b4c418e1b9ea95b1"
 }
