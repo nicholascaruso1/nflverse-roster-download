@@ -1,0 +1,10 @@
+55b00ba75c5bcdaea6a97309c11968f68e88b94805faff47234b7925164236b1  ./README.md
+9265681b00c3896969d1eaa6a9aafc7ae401fd1382ad28a93173942742140c77  ./calibration/prop-model-v0.1-calibration-audit_resaved-copy.md
+023a997bf0b0a22ed4908108e6a81a2bf3a3a16b4102ab58df3235e21aee2baf  ./pregame/4pm-prop-model-card_original-as-first-saved.md
+f986d26bc16414859753b798ab83c7ef0133b2f1aa337423d94a42f3cc0958e1  ./pregame/4pm-prop-model-card_with-errata-1.md
+e4003663bd436ae444e92328643272fc99f0baa33d6abd4dd70a4c0f5a71ff1b  ./provenance/code/board.py
+54304b023056d14b485dd4757a9f027d4c0c1ac63f7db33e7dba984ec56df904  ./provenance/code/card.py
+ee66f9797f53eb0e40003a85176833a692f8388dcf5f4fefe1319bcc13692a1f  ./provenance/code/card_template.md
+0e840fec9cb6f9b9098675e1b2f73c9d208ce4e3599dc63fa5d87caf5d1b9eda  ./provenance/code/model.py
+9a2e7d9ed2688cf5b7d318ec590a8d38b32693ad6440ed965bbe6f50edd43462  ./provenance/code/validate.py
+63727b82845bba783222890c59e32836738b0691c503668293d54f74f56a8a6d  ./provenance/pilot_v0.1_board_output_4pm.csv
