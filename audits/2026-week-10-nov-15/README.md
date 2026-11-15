@@ -13,6 +13,16 @@ Model: NFL Player Prop Model v2.2 (frozen); pilot v0.1 probabilities (unvalidate
 | `provenance/pilot_v0.1_board_output_4pm.csv` | Per-prop pilot output (all perturbation-derived fields except per-game histories) | Generated from the run that produced the card |
 | `SHA256SUMS` | Checksums of every file here | |
 
+## Classification (archive standard: FROZEN / FINAL / RESEARCH / SUPERSEDED / RECONSTRUCTED)
+| File | Classification | Provenance |
+|---|---|---|
+| `pregame/4pm-prop-model-card_original-as-first-saved.md` | **RECONSTRUCTED** (hash-verified) | **Regenerated from the committed generator, not copied from a stored original.** Its SHA-256 equals the version id the Project returned when the original was saved, so the text is believed identical, but the stored original itself was not available to copy. |
+| `pregame/4pm-prop-model-card_with-errata-1.md` | FINAL (exact copy of the Project doc at last save) | Contains the original card plus three in-line corrections and an Errata section; not the pre-errata original |
+| `calibration/prop-model-v0.1-calibration-audit_resaved-copy.md` | RESEARCH, **re-saved copy** | Text transferred by me; the Project original governs |
+| `provenance/code/*`, `provenance/pilot_v0.1_board_output_4pm.csv` | RESEARCH, exact copies of workspace files | |
+
+No file in this directory is a verified byte-exact copy of an originally stored FROZEN file. That status requires the original Project documents (pending ZIP).
+
 ## Not included yet (needs exact bytes, not retyping)
 The 1 PM prop card and the Lock 2 Bet Model card exist only in the Project. They will be added once an exact copy is available.
 
