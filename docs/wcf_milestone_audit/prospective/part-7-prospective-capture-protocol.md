@@ -1,12 +1,13 @@
 # WCF Audit — Part 7: Prospective Post Capture and Claim-Level Evidence Logging
 
-Protocol version: **P7 v0.2 DRAFT** (2026-11-20). Status: for review; nothing has been captured under it yet.
+Protocol version: **P7 v0.3 DRAFT** (2026-11-20). Status: for review; nothing has been captured under it yet.
 Research artifact only. Separate from the NFL/CFB betting models, the Script & Narrative Engine and the registry. Nothing here recommends a bet, and no ledger row is an input to any model.
 v4.2 (commit 0196732), v4.1 and Parts 1–6 are **not modified** by this part. New observations never edit historical findings; they live only in `prospective/`.
 
 Version history:
 - v0.1 DRAFT — initial protocol and empty ledger templates.
 - v0.2 DRAFT — after ChatGPT review: (1) immutable capture-time provenance plus dated evidence-based amendments; (2) record-state taxonomy, so a post missing from the conversation is never a claim record; (3) exact Established-provenance requirements; (4) outcomes reference the immutable capture-time status. Part 5 stop/go table unchanged.
+- v0.3 DRAFT — after ChatGPT review of commit 7e640ad (v0.2 stays available in git history): explicit pilot-count rule via a new selections ledger; comparison-level ledger; validator now covers all ledgers, requires UTC-with-offset timestamps, never crashes on bad input, enforces amendment ordering, newly-located-evidence fields and preserved-evidence paths; automated synthetic test suite.
 
 ## 1. Scope and hard limits
 
@@ -43,11 +44,15 @@ Arithmetic and source verification may use data dated before the claim cutoff on
 
 After the event, add rows to `outcomes_ledger.csv`; never edit the claim row's wording, conventions or `provenance_at_capture`. Each outcome row records `provenance_at_capture_copied`, which must equal the claim's immutable capture-time value; later amendments live only in the amendments ledger and never rewrite an outcome record. Three questions stay separate: did the event occur (event accuracy), does the arithmetic reproduce (arithmetic reproduction), and was the claim observable before kickoff (provenance). Event occurrence never upgrades provenance or arithmetic status, and a failed event never removes a claim. Losses, nonmatches, voids, unresolved outcomes, locked/missing posts and no-decode selections all stay in the ledgers. A locked or inaccessible post is a Known-but-inaccessible record, not a nonmatch; an unsupplied or unobserved post is a coverage note only.
 
-## 6. Denominator and search-space record (`search_space_log.csv`)
+## 6. Denominator and search-space record
 
-For each captured post, before outcomes: the candidate universe description; the scopes, intervals and ciphers available for each decode; comparisons attempted and comparisons matched (record attempts, not only matches); and whether equivalent numbers were checked for non-selected players in the same games. Counts are descriptive data-quality items.
+`search_space_log.csv` (per captured post, frozen **before** any outcome is recorded; the validator rejects an outcome with no earlier freeze): candidate universe description; scopes, intervals and ciphers available; aggregate comparisons attempted and matched; whether equivalent numbers were checked for non-selected players in the same games.
+
+`comparisons_ledger.csv` lists each comparison operation: subject, statistic, numerical target, scope, cutoff, operation type and detail, whether it was attempted, and the result class (Match / Nonmatch / Not computable). Aggregate counts in the search-space log must equal the comparison rows, so a later auditor can reconstruct which comparisons were made. Counts are descriptive data-quality items.
 
 ## 7. Pilot checkpoint
+
+**Counting rule.** The unit is the **unique eligible selection** (`selections_ledger.csv`), never a claim row. One selection with several rationales (several claim rows) counts once; a post with several selections adds one row per selection; a selection with no disclosed decode counts (`decode_disclosed` = No); a selection repeated in a later post is marked Duplicate pointing to the first Eligible one and is not counted again; a post with no identifiable selection has no selection row and is not counted. A selection is Eligible only if it comes from an Observed capture and names the player/team, game and market. The validator prints the pilot count from this rule.
 
 Uses the Part 5 rev. 2 stop/go table unchanged. The first **100 prospectively logged selections** (including no-decode selections) are a completeness and process checkpoint — not validation, not a significance test, and no hit rate is computed from them. Prevalence analysis requires its own prespecified design and multiple-comparison handling. Unresolved proportion is reported only as a descriptive statistic. NEVER GO: no transfer into betting models, the registry, the Narrative Engine or staking decisions.
 
@@ -55,10 +60,12 @@ At 100 selections, report only: counts by access state, provenance status, claim
 
 ## 8. Files
 
-- `ledgers/capture_log.csv`, `claims_ledger.csv`, `provenance_amendments.csv`, `outcomes_ledger.csv`, `source_coverage_log.csv`, `search_space_log.csv` — empty templates (headers only).
+- `ledgers/capture_log.csv`, `selections_ledger.csv`, `claims_ledger.csv`, `comparisons_ledger.csv`, `provenance_amendments.csv`, `outcomes_ledger.csv`, `source_coverage_log.csv`, `search_space_log.csv` — empty templates (headers only).
 - `ledgers/VALID_VALUES.md` — allowed values.
 - `validate_ledgers.py` — structural checks only (required fields, allowed values, links, Established-provenance requirements, amendment rules, outcome/capture-time-provenance consistency). It evaluates no claim.
 
 ## 9. Known limitations
 
-Provenance can only be Established when the preserved source shows the claim and a pre-kickoff timestamp; Patreon page fetches failed earlier in this audit, so many posts may be Not established. Capture depends on Nick supplying material, and the source-coverage log is how that dependence stays visible. No sample from this protocol can be treated as complete unless the capture frame is itself documented. The validator checks structure only and cannot verify that evidence is genuine.
+**Amendment rules.** The current assessment is the latest amendment by `amended_utc`; ties and out-of-order entries are rejected. Every amendment, including a downgrade, needs a basis and reason. An upgrade to Established needs evidence flagged not known at capture and first located after the capture timestamp, a retrieval timestamp and a preserved evidence path (a URL alone is not enough); Not applicable → Established also needs a written explanation of why the original classification was wrong. All `*_utc` fields must be ISO UTC with Z or +00:00.
+
+Provenance can only be Established when the preserved source shows the claim and a pre-kickoff timestamp; Patreon page fetches failed earlier in this audit, so many posts may be Not established. Capture depends on Nick supplying material, and the source-coverage log is how that dependence stays visible. No sample from this protocol can be treated as complete unless the capture frame is itself documented. The validator checks structure only: a clean run means the records are internally consistent, not that the evidence is authentic, complete, newly discovered or predictive. `test_validator.py` runs synthetic tests (fictional rows only).
