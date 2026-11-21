@@ -1,0 +1,71 @@
+register_id,sheet,cell,v4.1_full_current_value
+D-01,Rhamondre Stevenson Reconstruction,B7,Chicago Reduction = 35; Ordinal 46.
+D-01,Public WCF Claims Ledger,C19,Chicago=35; Thursday=35; next regular-season TD would be #35; Rhamondre Stevenson Reverse=257; Thursday Night Football Ordinal=257; last TD vs NFC opponent claimed 257 days earlier.
+D-01,Cross-Post Methodology Matrix,H15,Chicago Reduction 35; Thursday Reduction 35; Stevenson Reverse 257; Thursday Night Football Ordinal 257
+D-02,Nico Collins Reconstruction,B9,DOB 1999-03-19; next birthday 2027-03-19; difference = 120 days
+D-02,Nico Collins Reconstruction,D28,DOB 03/19/1999
+D-02,DOB Verification,C2,Not verified in official bio during this pass
+D-02,DOB Verification,F2,Do not freeze 120-day interval until DOB verified from official source.
+D-03,Nico Collins Reconstruction,A10,39th career home game
+D-03,Nico Collins Reconstruction,A39,"The 39th-home-game claim is reconstructed only if WCF's counting convention includes postseason appearances. If WCF's convention is regular-season-only, the target game is #37, not #39. The source material available here does not establish WCF's formal counting convention; this is the convention required to reproduce the claim."
+D-03,Cross-Post Methodology Matrix,G8,39th career home appearance only if postseason included
+D-04,Rhamondre Stevenson Reconstruction,A9,Next TD would be career #35
+D-04,Rhamondre Stevenson Reconstruction,B9,"Through 2025: 28 rushing TD + 4 receiving TD = 32. Through Oct. 18, 2026: 2 additional rushing TD (Oct. 4 and Oct. 11), no receiving TD. Pregame total = 34; next TD = #35."
+D-04,Rhamondre Stevenson Reconstruction,E23,32 regular-season TD through 2025 + 1 postseason TD + 2 2026 regular-season TD = 35. See note below: career total #35 depends on whether NFL career stat total includes postseason.
+D-04,Rhamondre Stevenson Reconstruction,A26,"The WCF 35th-career-TD claim requires a clear scoring definition. NFL.com season career table totals through 2025 are 28 rushing + 4 receiving = 32 regular-season TD. Add the Feb. 8, 2026 postseason receiving TD and the Oct. 4/11, 2026 regular-season rushing TDs = 35 total across regular season + postseason before the Oct. 22 game. Therefore WCF's #35 is correct only when postseason TDs are included. If strictly regular-season only, the pregame total is 34 and the Oct. 22 TD would be #35. Since the post does not state the scope, retain both interpretations."
+D-04,Rhamondre Stevenson Reconstruction,A37,"WCF's ciphers reproduce exactly. The 35th-career-TD milestone is supported if the count includes the Feb. 8, 2026 postseason touchdown; under regular-season-only counting the target touchdown would also be #35. The 257-day interval is 257 only under inclusive date counting, not elapsed-day subtraction. These are material definition/counter-convention dependencies, not silently resolved matches."
+D-04,Public WCF Claims Ledger,G19,See Rhamondre Stevenson Reconstruction. Next TD #35 holds only when postseason TD is excluded; inclusive 257-date count differs from 256 elapsed days.
+D-04,Cross-Post Methodology Matrix,C15,Next regular-season TD #35
+D-04,Cross-Post Methodology Matrix,L15,"Combined regular season + postseason pregame TD count was 35; WCF #35 only holds regular-season-only. 257 is inclusive dates, 256 elapsed days."
+D-05,Eagles Giants Reconstruction,A13,184 previous all-time meetings; 185th meeting
+D-05,Eagles Giants Reconstruction,B13,NFL Week 9 official capsules state 182 regular-season meetings before Nov. 8 (series 93-87-2). Other public historical databases disagree on total counts and whether postseason games are included.
+D-05,Eagles Giants Reconstruction,D13,WCF says 184 all-time; official NFL pregame source confirms 182 regular-season meetings. Do not call 184 verified without WCF's exact historical source and inclusion rule.
+D-05,Eagles Giants Reconstruction,A36,Two source issues must remain visible: (1) WCF's 184 prior / 185th all-time Eagles-Giants meeting is not reconciled with the NFL's official pregame figure of 182 regular-season meetings; (2) slide 1 depicts/labels MetLife Stadium even though the game was at Lincoln Financial Field. The target-game outcome is excluded from every pregame reconstruction.
+D-05,Public WCF Claims Ledger,G12,All four Patreon slides retrieved. Pregame cutoff 2026-11-07; Nov. 8 outcome excluded. WCF's 184/185 count not reconciled; visual venue error recorded.
+D-05,Cross-Post Methodology Matrix,L14,NFL official source says 182 regular-season meetings; WCF 184/185 count unreconciled; graphic venue mismatch.
+D-06,Panthers Packers Reconstruction,A8,Slide 1 — “103rd game of the season”
+D-06,Panthers Packers Reconstruction,D8,WCF does not disclose a narrower game-count rule. Do not silently accept 103 as a verified game ordinal.
+D-06,Public WCF Claims Ledger,G21,See Panthers Packers Reconstruction. “103rd game” conflicts with full schedule count (108th); 11-7 is regular-season only; Packers/NFC South loss count unverified; referee trend is historical descriptive data only.
+D-06,Cross-Post Methodology Matrix,D17,50 elapsed days from season opener; “103rd game” fails full-schedule count
+D-07,Bears Seahawks Reconstruction,A20,Slide 3 — Mike Macdonald 2–6 ATS as home favorite
+D-07,Bears Seahawks Reconstruction,B20,WCF reports 2–6 ATS (25.0%). NBC Sports' pregame trend table reports Seattle 8–6–2 ATS as a home favorite with Macdonald.
+D-07,Cross-Post Methodology Matrix,L21,Macdonald home-favorite 2-6 conflicts with NBC 8-6-2; Macdonald vs NFC 3-7 unverified; 44w4d is inclusive.
+D-07,Public WCF Claims Ledger,G25,See Bears Seahawks Reconstruction. 4y44w4d requires inclusive counting (elapsed is 4y44w3d). Ben Johnson 8-4 and 14-3 splits independently reported; Macdonald 2-6 home-favorite conflicts with NBC 8-6-2; 3-7 vs NFC unverified. No target-game result used.
+D-08,Nico Collins Reconstruction,D43,Houston won 26–3.
+D-09,Nico Collins Reconstruction,B44,"42-yard receiving touchdown from C.J. Stroud in Q2; 3 receptions, 58 receiving yards, 1 receiving TD."
+D-09,Nico Collins Reconstruction,C44,OFFICIALLY VERIFIED
+D-09,Nico Collins Reconstruction,D49,Scoring table identifies Nico Collins 42-yard pass from C.J. Stroud.
+D-10,Nico Collins Reconstruction,C45,HIT
+D-10,Cross-Post Methodology Matrix,K8,Reconstructed with definition caveat
+D-10,Read Me,B57,"Added postgame audit for Nico Collins Nov. 19, 2026: 42-yard receiving TD vs Indianapolis confirms the pregame #30 career regular-season receiving TD milestone forecast. Classified as a hit for this event; no global methodology validation implied."
+D-11,DJ Moore Source Audit,B8,WCF says DJ Moore had 44 total touchdowns; a target TD would be #45. “New England” = 45 (Reduction) and 45 (Reverse Reduction).
+D-11,DJ Moore Source Audit,D8,"Pregame regular-season baseline: 43 TDs through 2025 (41 receiving + 2 rushing) plus one 2026 regular-season TD through Sep. 27 = 44; therefore the next regular-season TD would be #45. If postseason is included, his Jan. 18, 2026 playoff TD raises the pregame total to 45, so the next combined regular-season + postseason TD would be #46. WCF's word “total” does not state the scope. Cipher values reproduce under the stated convention."
+D-11,DJ Moore Source Audit,B16,The user-supplied Instagram carousel materially upgrades the October 4 DJ Moore record from selection-only to a partial decode reconstruction. The 39/45/37 ciphers and 37-week interval reproduce. The 44-TD milestone reproduces only under regular-season-only scope; combined regular season + postseason baseline is 45 because the Jan. 18 playoff TD is included. The 38th AFC-game count is plausible from pregame schedule history but remains pending a complete game-by-game count audit. Slide 4 and the separate Patreon updated-post attribution remain unresolved.
+D-11,DJ Moore Reconstruction,C9,"Regular-season-only: 41 receiving + 2 rushing through 2025 = 43; plus one regular-season receiving TD vs Houston on Sep. 13, 2026 = 44. Including the Jan. 18, 2026 postseason receiving TD, combined baseline = 45."
+D-11,Cross-Post Methodology Matrix,C19,"44th regular-season career TD pregame; next would be #45 (postseason-inclusive baseline is 45, so next would be #46)"
+D-12,Bo Nix Uploaded Slide Audit,B3,"Denver Broncos at Seattle Seahawks — October 15, 2026"
+D-12,Bo Nix Uploaded Slide Audit,C10,"The target game is at Seattle, away from Denver. A touchdown in this game cannot increase Nix's home-points total."
+D-12,Bo Nix Uploaded Slide Audit,D10,INTERNAL LOGIC CONFLICT
+D-12,Bo Nix Uploaded Slide Audit,E10,This is a material location/definition issue. Do not mark the claimed 42 home points as a valid pregame milestone for this road game.
+D-12,Cross-Post Methodology Matrix,G11,42nd career game; home-points claim conflicts with game being at Seattle
+D-12,Public WCF Claims Ledger,G9,User-uploaded Instagram screenshots are primary evidence. Slide 4/4 not supplied. 42 home points conflicts with road game; Sep. 27 to Oct. 15 = 18 elapsed days.
+D-13,Travis Kelce #87 Symbolic Audit,B12,82 receiving + 3 rushing through 2025 = 85; add 2 receiving TDs in 2026 = 87 total regular-season TDs through October 18.
+D-13,Travis Kelce #87 Symbolic Audit,D12,"The 87 requires adding receiving and rushing TDs and excluding postseason. Receiving-only total is 84. If postseason is included, the career total is higher because Kelce has 20 postseason receiving TDs."
+D-13,Travis Kelce #87 Symbolic Audit,B17,"The numerical coincidence reproduces under one explicit scope: Kelce's regular-season receiving + rushing touchdowns through October 18, 2026 total 87, matching his jersey number. It does not reproduce as receiving-only (84), and postseason inclusion changes the total. This is a verified symbolic association, not a demonstrated predictive method."
+D-13,Cross-Post Methodology Matrix,H20,"Career regular-season TDs = 87 (82 receiving + 3 rushing through 2025, plus 2 receiving in 2026)"
+D-13,Cross-Post Methodology Matrix,L20,87 depends on combined regular-season TD scope; receiving-only is 84; postseason excluded. Card selections and eligible-player denominator unavailable.
+D-13,Public WCF Claims Ledger,G24,See Travis Kelce #87 Symbolic Audit. 87 = 82 receiving + 3 rushing through 2025 + 2 receiving in 2026; receiving-only=84; postseason excluded. The separate 10/18 13-pick card is locked; no predictive test possible.
+D-14,Travis Kelce #87 Symbolic Audit,D12,"The 87 requires adding receiving and rushing TDs and excluding postseason. Receiving-only total is 84. If postseason is included, the career total is higher because Kelce has 20 postseason receiving TDs."
+D-15,Ja'Marr Chase Reconstruction,A18,42 prior home games; target is #43
+D-15,Ja'Marr Chase Reconstruction,D18,StatMuse career home query captured 40 games through the 2025 season; 2026 pregame logs show home games vs TB (Sep. 13) and JAX (Oct. 4). Excludes postseason.
+D-15,Ja'Marr Chase Reconstruction,D29,40 regular-season home games in career at 2025-season snapshot
+D-15,Ja'Marr Chase Reconstruction,A35,"All visible Ja'Marr Chase slide claims are reproducible under the stated conventions. The 59-to-60 career TD count, date intervals, and ciphers match. The 43rd home-game count reconstructs using regular-season appearances only. This is a faithful reconstruction of WCF's disclosed rationale, not evidence of predictive validity."
+D-15,Cross-Post Methodology Matrix,G12,43rd regular-season home game
+Moore AFC,DJ Moore Reconstruction,C8,"The claim is consistent with 36 AFC games through 2025 plus AFC opponents in 2026 Weeks 1 (Houston) and 3 (LA Chargers), for 38 pregame games. A complete game-by-game count is still required before treating exact count as fully verified."
+Moore AFC,DJ Moore Source Audit,B7,WCF says DJ Moore had played 38 career games against AFC opponents; target would be his 39th. The screenshot also displays “Touchdown” = 39 (Reverse Reduction) and “New York” = 39 (Reduction).
+Moore AFC,Cross-Post Methodology Matrix,F19,38th career AFC game pregame; next would be #39 (count audit pending); last home TD vs Rams
+D-16,Universe Summary,B4,"NFL-related archive entries recorded: 48 total entries, including explicit NFL posts, NFL selections, mixed/ambiguous posts, and a boundary/control item."
+D-16,Universe Summary,B5,"Entries explicitly marked Public: 11. Additional public/media states (carousel available, user-supplied images, or image-only post) are separately labeled in the universe sheet."
+D-16,Universe Summary,B6,Entries explicitly marked Locked: 25. Locked posts remain in the archive frame but their selections/decodes are not observable.
+D-16,Universe Summary,B7,"Remaining access states: 12 entries are sitemap-listed, content not opened, image-only, recording access unverified, or otherwise unresolved. See row-level status."
+D-16,Universe Summary,B8,Entries marked NFL relevance = Yes: 45. Possible: 2. No (non-NFL control): 1.
