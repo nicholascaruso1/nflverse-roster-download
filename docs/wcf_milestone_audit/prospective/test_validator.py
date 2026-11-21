@@ -65,6 +65,10 @@ CASES = [
  ("valid duplicate passes and is not counted", lambda d: (d["capture_log.csv"].append(dict(d["capture_log.csv"][0], capture_id="C3", capture_timestamp_utc="2026-11-21T12:10:00Z")), d["selections_ledger.csv"].append(dict(d["selections_ledger.csv"][0], selection_id="S9", capture_id="C3", eligibility="Duplicate", duplicate_of_selection_id="S1", player_or_team=" p "))), "target 100): 2"),
  ("contradictory outcome fields", lambda d: d["outcomes_ledger.csv"][0].update(event_result="Did not occur"), "inconsistent"),
  ("void mapped to occurred", lambda d: d["outcomes_ledger.csv"][0].update(event_result="Void/postponed"), "inconsistent"),
+ ("duplicate on inaccessible capture", lambda d: d["selections_ledger.csv"].append(dict(d["selections_ledger.csv"][0], selection_id="S9", capture_id="C2", eligibility="Duplicate", duplicate_of_selection_id="S1")), "must come from an Observed capture"),
+ ("two search-space records for one capture", lambda d: d["search_space_log.csv"].append(dict(d["search_space_log.csv"][0], frozen_id="F2", comparisons_attempted="0", comparisons_matched="0")), "one per capture"),
+ ("claim on duplicate selection", lambda d: (d["capture_log.csv"].append(dict(d["capture_log.csv"][0], capture_id="C3", capture_timestamp_utc="2026-11-21T12:10:00Z")), d["selections_ledger.csv"].append(dict(d["selections_ledger.csv"][0], selection_id="S9", capture_id="C3", eligibility="Duplicate", duplicate_of_selection_id="S1")), d["claims_ledger.csv"][0].update(capture_id="C3", selection_id="S9")), "only an Eligible selection"),
+ ("claim on ineligible selection", lambda d: d["selections_ledger.csv"][1].update(eligibility="Ineligible") or d["claims_ledger.csv"][0].update(selection_id="S2"), "only an Eligible selection"),
  ("evidence located after retrieval", lambda d: d["provenance_amendments.csv"][0].update(evidence_first_located_utc="2026-11-22T08:30:00Z"), "after evidence_retrieval"),
  ("evidence retrieved after amendment", lambda d: d["provenance_amendments.csv"][0].update(evidence_retrieval_timestamp_utc="2026-11-22T10:00:00Z"), "retrieved after the amendment"),
 ]

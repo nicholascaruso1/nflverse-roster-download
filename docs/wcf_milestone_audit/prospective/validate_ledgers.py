@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Structural validator for Part 7 ledgers (v0.4). Checks records are internally consistent.
+"""Structural validator for Part 7 ledgers (v0.5). Checks records are internally consistent.
 It CANNOT verify that evidence is authentic, complete, newly discovered or predictive.
 Never crashes on malformed rows: problems are reported as errors. Research artifact only."""
 import csv, sys, pathlib, re
@@ -29,7 +29,7 @@ def load(n):
     try:
         with open(p, newline="", encoding="utf-8") as f:
             rd = csv.DictReader(f)
-            if ",".join(rd.fieldnames or []) != HDR[n]: E(f"{n}: header does not match v0.4 template"); return []
+            if ",".join(rd.fieldnames or []) != HDR[n]: E(f"{n}: header does not match v0.5 template"); return []
             out = []
             for i, r in enumerate(rd, 2):
                 if None in r or None in r.values(): E(f"{n} line {i}: wrong number of columns"); continue
@@ -86,6 +86,7 @@ for r in sel:
         o = seld.get(r["duplicate_of_selection_id"])
         if not o or o["eligibility"] != "Eligible" or o["capture_id"] == r["capture_id"]: E(f"{t}: Duplicate must name an Eligible selection from a different capture")
         else:
+            if capd.get(r["capture_id"], {}).get("record_state") != "Observed": E(f"{t}: a Duplicate must come from an Observed capture (the repeat must be visible in the later post)")
             oc, dc = ts(capd.get(o["capture_id"], {}).get("capture_timestamp_utc")), ts(capd.get(r["capture_id"], {}).get("capture_timestamp_utc"))
             if not (oc and dc and oc < dc): E(f"{t}: the original selection's capture must precede the duplicate's capture")
             norm = lambda x: " ".join(x.lower().split())
@@ -100,6 +101,7 @@ for r in cl:
     if c["record_state"] != "Observed": E(f"{t}: claim rows require an Observed capture (inaccessible content stays Missing; no claim is inferred)")
     if r["selection_id"] and r["selection_id"] not in selids: E(f"{t}: unknown selection_id")
     if r["selection_id"] and seld[r["selection_id"]]["capture_id"] != r["capture_id"]: E(f"{t}: selection belongs to a different capture")
+    if r["selection_id"] in seld and seld[r["selection_id"]]["eligibility"] != "Eligible": E(f"{t}: claims may reference only an Eligible selection (not Duplicate or Ineligible)")
     if not r["exact_wording"]: E(f"{t}: exact_wording required")
     enum(r, "claim_category", CATS, t); enum(r, "counting_scope", SCOPE, t); enum(r, "provenance_at_capture", PROV, t)
     enum(r, "arithmetic_status", STAT, t); enum(r, "source_status", STAT, t); enum(r, "convention_preselected_before_test", YN, t)
@@ -137,6 +139,10 @@ for a in am:
             E(f"{t}: Not applicable -> Established needs original_classification_error_explanation")
 # search space and comparisons
 ssids = idcheck(ss, "search_space_log", "frozen_id"); ssd = {r["frozen_id"]: r for r in ss}
+_seen_cap = set()
+for r in ss:
+    if r["capture_id"] in _seen_cap: E(f"search_space {r['frozen_id']}: more than one search-space record for capture {r['capture_id']} (one per capture)")
+    _seen_cap.add(r["capture_id"])
 for r in ss:
     t = f"search_space {r['frozen_id']}"
     if r["capture_id"] not in capids: E(f"{t}: unknown capture_id")
