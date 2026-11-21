@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Structural validator for Part 7 ledgers (v0.3). Checks records are internally consistent.
+"""Structural validator for Part 7 ledgers (v0.4). Checks records are internally consistent.
 It CANNOT verify that evidence is authentic, complete, newly discovered or predictive.
 Never crashes on malformed rows: problems are reported as errors. Research artifact only."""
 import csv, sys, pathlib, re
@@ -29,7 +29,7 @@ def load(n):
     try:
         with open(p, newline="", encoding="utf-8") as f:
             rd = csv.DictReader(f)
-            if ",".join(rd.fieldnames or []) != HDR[n]: E(f"{n}: header does not match v0.3 template"); return []
+            if ",".join(rd.fieldnames or []) != HDR[n]: E(f"{n}: header does not match v0.4 template"); return []
             out = []
             for i, r in enumerate(rd, 2):
                 if None in r or None in r.values(): E(f"{n} line {i}: wrong number of columns"); continue
@@ -85,6 +85,11 @@ for r in sel:
     if r["eligibility"] == "Duplicate":
         o = seld.get(r["duplicate_of_selection_id"])
         if not o or o["eligibility"] != "Eligible" or o["capture_id"] == r["capture_id"]: E(f"{t}: Duplicate must name an Eligible selection from a different capture")
+        else:
+            oc, dc = ts(capd.get(o["capture_id"], {}).get("capture_timestamp_utc")), ts(capd.get(r["capture_id"], {}).get("capture_timestamp_utc"))
+            if not (oc and dc and oc < dc): E(f"{t}: the original selection's capture must precede the duplicate's capture")
+            norm = lambda x: " ".join(x.lower().split())
+            if any(norm(o[f]) != norm(r[f]) for f in ("player_or_team","game","market_stated")): E(f"{t}: Duplicate must match the original on player_or_team, game and market_stated (normalized text); if identity is only semantic, mark Ineligible and note it for manual review")
 # claims
 clids = idcheck(cl, "claims_ledger", "claim_id"); cld = {r["claim_id"]: r for r in cl}
 def est_ok(pub, retr, kick, vis, unamb, path):
@@ -92,6 +97,7 @@ def est_ok(pub, retr, kick, vis, unamb, path):
 for r in cl:
     t = f"claim {r['claim_id']}"; c = capd.get(r["capture_id"])
     if not c: E(f"{t}: unknown capture_id"); continue
+    if c["record_state"] != "Observed": E(f"{t}: claim rows require an Observed capture (inaccessible content stays Missing; no claim is inferred)")
     if r["selection_id"] and r["selection_id"] not in selids: E(f"{t}: unknown selection_id")
     if r["selection_id"] and seld[r["selection_id"]]["capture_id"] != r["capture_id"]: E(f"{t}: selection belongs to a different capture")
     if not r["exact_wording"]: E(f"{t}: exact_wording required")
@@ -115,6 +121,9 @@ for a in am:
         last[a["claim_id"]] = max(when, prev) if prev else when
         cc = ts(capd[c["capture_id"]]["capture_timestamp_utc"])
         if cc and when < cc: E(f"{t}: amendment predates the claim's capture")
+    fl_, rt_, am_ = ts(a["evidence_first_located_utc"]), ts(a["evidence_retrieval_timestamp_utc"]), ts(a["amended_utc"])
+    if fl_ and rt_ and fl_ > rt_: E(f"{t}: evidence_first_located_utc is after evidence_retrieval_timestamp_utc")
+    if rt_ and am_ and rt_ > am_: E(f"{t}: evidence retrieved after the amendment was recorded")
     if a["new_provenance_status"] == "Established":
         k = capd[c["capture_id"]]["kickoff_time_utc_of_earliest_game"]
         enum(a, "evidence_is_postgame_material", YN, t); enum(a, "evidence_known_at_capture", YN, t)
@@ -141,6 +150,8 @@ for r in cmp_:
     t = f"comparison {r['comparison_id']}"
     if r["frozen_id"] not in ssids: E(f"{t}: unknown frozen_id")
     if r["selection_id"] and r["selection_id"] not in selids: E(f"{t}: unknown selection_id")
+    elif r["selection_id"] and r["frozen_id"] in ssd and seld[r["selection_id"]]["capture_id"] != ssd[r["frozen_id"]]["capture_id"]:
+        E(f"{t}: selection belongs to a different capture than the frozen search-space record")
     enum(r, "operation_type", {"Cipher","Date interval","Count","Other"}, t); enum(r, "attempted", YN, t); enum(r, "counting_scope", SCOPE, t)
     for f in ("subject_player_or_team","statistic","numerical_target","operation_detail"):
         if not r[f]: E(f"{t}: {f} required")
@@ -148,10 +159,10 @@ for r in cmp_:
         enum(r, "result_class", {"Match","Nonmatch","Not computable"}, t)
         c_ = cnt.setdefault(r["frozen_id"], [0, 0]); c_[0] += 1; c_[1] += r["result_class"] == "Match"
     elif r["result_class"]: E(f"{t}: result_class must be empty when attempted = No")
-for fid, (a_, m_) in cnt.items():
-    s = ssd.get(fid)
-    if s and s["comparisons_attempted"].isdigit() and s["comparisons_matched"].isdigit() and (int(s["comparisons_attempted"]), int(s["comparisons_matched"])) != (a_, m_):
-        E(f"search_space {fid}: aggregate counts ({s['comparisons_attempted']}/{s['comparisons_matched']}) do not equal comparison rows ({a_}/{m_})")
+for fid, s_ in ssd.items():
+    a_, m_ = cnt.get(fid, (0, 0))
+    if s_["comparisons_attempted"].isdigit() and s_["comparisons_matched"].isdigit() and (int(s_["comparisons_attempted"]), int(s_["comparisons_matched"])) != (a_, m_):
+        E(f"search_space {fid}: aggregate counts ({s_['comparisons_attempted']}/{s_['comparisons_matched']}) do not equal comparison rows ({a_}/{m_})")
 frozen_for = {}
 for r in ss:
     if ts(r["frozen_utc"]): frozen_for.setdefault(r["capture_id"], []).append(ts(r["frozen_utc"]))
@@ -161,7 +172,9 @@ for r in out:
     t = f"outcome {r['outcome_id']}"; c = cld.get(r["claim_id"])
     if not c: E(f"{t}: unknown claim_id"); continue
     enum(r, "event_result", {"Occurred","Did not occur","Void/postponed","Unresolved"}, t)
-    enum(r, "event_accuracy_status", {"Event occurred","Event did not occur","Unresolved"}, t)
+    enum(r, "event_accuracy_status", {"Event occurred","Event did not occur","Unresolved","Void/postponed"}, t)
+    if {"Occurred":"Event occurred","Did not occur":"Event did not occur","Unresolved":"Unresolved","Void/postponed":"Void/postponed"}.get(r["event_result"]) != r["event_accuracy_status"]:
+        E(f"{t}: event_result {r['event_result']!r} is inconsistent with event_accuracy_status {r['event_accuracy_status']!r}")
     enum(r, "arithmetic_reproduction_status", STAT, t); utc(r, "outcome_recorded_utc", t, True)
     if r["provenance_at_capture_copied"] != c["provenance_at_capture"]: E(f"{t}: must reference the immutable provenance_at_capture (amendments never rewrite outcome records)")
     fz, ot = frozen_for.get(c["capture_id"]), ts(r["outcome_recorded_utc"])

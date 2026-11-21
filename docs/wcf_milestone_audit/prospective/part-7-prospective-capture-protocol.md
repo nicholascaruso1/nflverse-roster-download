@@ -1,6 +1,6 @@
 # WCF Audit — Part 7: Prospective Post Capture and Claim-Level Evidence Logging
 
-Protocol version: **P7 v0.3 DRAFT** (2026-11-20). Status: for review; nothing has been captured under it yet.
+Protocol version: **P7 v0.4 DRAFT** (2026-11-20). Status: for review; nothing has been captured under it yet.
 Research artifact only. Separate from the NFL/CFB betting models, the Script & Narrative Engine and the registry. Nothing here recommends a bet, and no ledger row is an input to any model.
 v4.2 (commit 0196732), v4.1 and Parts 1–6 are **not modified** by this part. New observations never edit historical findings; they live only in `prospective/`.
 
@@ -8,6 +8,7 @@ Version history:
 - v0.1 DRAFT — initial protocol and empty ledger templates.
 - v0.2 DRAFT — after ChatGPT review: (1) immutable capture-time provenance plus dated evidence-based amendments; (2) record-state taxonomy, so a post missing from the conversation is never a claim record; (3) exact Established-provenance requirements; (4) outcomes reference the immutable capture-time status. Part 5 stop/go table unchanged.
 - v0.3 DRAFT — after ChatGPT review of commit 7e640ad (v0.2 stays available in git history): explicit pilot-count rule via a new selections ledger; comparison-level ledger; validator now covers all ledgers, requires UTC-with-offset timestamps, never crashes on bad input, enforces amendment ordering, newly-located-evidence fields and preserved-evidence paths; automated synthetic test suite.
+- v0.4 DRAFT — after ChatGPT review of a04c5dc (retained unchanged): aggregate comparison counts reconciled for every search-space record (zero rows included); comparison → search-space record → selection capture consistency; no claim rows on inaccessible captures; duplicate selections must be later than and textually identical to the original; event_result/event_accuracy_status consistency (Void/postponed added); amendment evidence chronology (first located ≤ retrieved ≤ amended). `operation_detail` must hold enough detail to reconstruct the calculation (inputs, source, formula or cipher, result); it is a manual record the validator cannot check.
 
 ## 1. Scope and hard limits
 

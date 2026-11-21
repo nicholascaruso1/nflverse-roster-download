@@ -57,12 +57,24 @@ CASES = [
  ("result_class with attempted No", lambda d: d["comparisons_ledger.csv"][0].update(attempted="No"), "must be empty"),
  ("coverage links unknown capture", lambda d: d["source_coverage_log.csv"][0].update(linked_capture_id="C9"), "unknown linked_capture_id"),
  ("duplicate selection names non-eligible", lambda d: d["selections_ledger.csv"][1].update(eligibility="Duplicate", duplicate_of_selection_id="S1"), "different capture"),
+ ("zero-row aggregate mismatch", lambda d: (d["comparisons_ledger.csv"].clear(), None), "do not equal comparison rows (0/0)"),
+ ("comparison selection from other capture", lambda d: (d["capture_log.csv"].append(dict(d["capture_log.csv"][0], capture_id="C3", capture_timestamp_utc="2026-11-21T11:10:00Z")), d["selections_ledger.csv"].append(dict(d["selections_ledger.csv"][0], selection_id="S9", capture_id="C3")), d["comparisons_ledger.csv"][0].update(selection_id="S9")), "different capture than the frozen"),
+ ("claim on inaccessible capture", lambda d: d["claims_ledger.csv"][0].update(capture_id="C2", selection_id=""), "require an Observed capture"),
+ ("duplicate original not earlier", lambda d: (d["capture_log.csv"].append(dict(d["capture_log.csv"][0], capture_id="C3", capture_timestamp_utc="2026-11-21T10:30:00Z")), d["selections_ledger.csv"].append(dict(d["selections_ledger.csv"][0], selection_id="S9", capture_id="C3", eligibility="Duplicate", duplicate_of_selection_id="S1"))), "must precede"),
+ ("duplicate identity mismatch", lambda d: (d["capture_log.csv"].append(dict(d["capture_log.csv"][0], capture_id="C3", capture_timestamp_utc="2026-11-21T12:10:00Z")), d["selections_ledger.csv"].append(dict(d["selections_ledger.csv"][0], selection_id="S9", capture_id="C3", eligibility="Duplicate", duplicate_of_selection_id="S1", player_or_team="Other"))), "must match the original"),
+ ("valid duplicate passes and is not counted", lambda d: (d["capture_log.csv"].append(dict(d["capture_log.csv"][0], capture_id="C3", capture_timestamp_utc="2026-11-21T12:10:00Z")), d["selections_ledger.csv"].append(dict(d["selections_ledger.csv"][0], selection_id="S9", capture_id="C3", eligibility="Duplicate", duplicate_of_selection_id="S1", player_or_team=" p "))), "target 100): 2"),
+ ("contradictory outcome fields", lambda d: d["outcomes_ledger.csv"][0].update(event_result="Did not occur"), "inconsistent"),
+ ("void mapped to occurred", lambda d: d["outcomes_ledger.csv"][0].update(event_result="Void/postponed"), "inconsistent"),
+ ("evidence located after retrieval", lambda d: d["provenance_amendments.csv"][0].update(evidence_first_located_utc="2026-11-22T08:30:00Z"), "after evidence_retrieval"),
+ ("evidence retrieved after amendment", lambda d: d["provenance_amendments.csv"][0].update(evidence_retrieval_timestamp_utc="2026-11-22T10:00:00Z"), "retrieved after the amendment"),
 ]
 bad = 0
 for name, fn, expect in CASES:
     p = run(mut(fn))
     if expect is None:
         ok = p.returncode == 0 and "target 100): 2" in p.stdout
+    elif expect.startswith("target"):
+        ok = p.returncode == 0 and expect in p.stdout
     else:
         ok = p.returncode == 1 and expect in p.stdout
     print(("PASS " if ok else "FAIL ") + name)
